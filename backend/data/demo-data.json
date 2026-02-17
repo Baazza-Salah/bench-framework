@@ -1,0 +1,85 @@
+{
+    "solutions": [
+        {
+            "id": "sol-001",
+            "name": "Palo Alto Cortex XDR",
+            "vendor": "Palo Alto Networks",
+            "version": "3.4",
+            "deploymentModel": "Cloud",
+            "methodType": "Hands-on",
+            "licenseInfo": "Pro Per-Endpoint",
+            "createdAt": "2023-10-01T10:00:00Z"
+        },
+        {
+            "id": "sol-002",
+            "name": "FortiSOC",
+            "vendor": "Fortinet",
+            "version": "7.2",
+            "deploymentModel": "Hybrid",
+            "methodType": "Theoretical",
+            "licenseInfo": "Enterprise Bundle",
+            "createdAt": "2023-10-02T11:00:00Z"
+        },
+        {
+            "id": "sol-003",
+            "name": "CrowdStrike Falcon",
+            "vendor": "CrowdStrike",
+            "version": "Sensor 6.5",
+            "deploymentModel": "Cloud",
+            "methodType": "Hands-on",
+            "licenseInfo": "Falcon Complete",
+            "createdAt": "2023-10-03T12:00:00Z"
+        }
+    ],
+    "scores": [
+        {
+            "solutionId": "sol-001",
+            "criterionId": "DP-001",
+            "score": 9,
+            "mode": "Practical",
+            "evidence": "Detected 10/10 ransomware samples in lab."
+        },
+        {
+            "solutionId": "sol-001",
+            "criterionId": "DP-002",
+            "score": 8,
+            "mode": "Practical",
+            "evidence": "Missed one obsufrated payload."
+        },
+        {
+            "solutionId": "sol-001",
+            "criterionId": "RA-001",
+            "score": 7,
+            "mode": "Practical",
+            "evidence": "Good automation but complex setup."
+        },
+        {
+            "solutionId": "sol-002",
+            "criterionId": "DP-001",
+            "score": 8,
+            "mode": "Theoretical",
+            "evidence": "Based on NSS Labs report."
+        },
+        {
+            "solutionId": "sol-002",
+            "criterionId": "CL-001",
+            "score": 9,
+            "mode": "Theoretical",
+            "evidence": "Very competitive pricing."
+        },
+        {
+            "solutionId": "sol-003",
+            "criterionId": "DP-001",
+            "score": 10,
+            "mode": "Practical",
+            "evidence": "Instant block on all samples."
+        },
+        {
+            "solutionId": "sol-003",
+            "criterionId": "DU-003",
+            "score": 9,
+            "mode": "Practical",
+            "evidence": "Best in class UI."
+        }
+    ]
+}

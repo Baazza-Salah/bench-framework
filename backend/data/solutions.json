@@ -1,0 +1,52 @@
+[
+  {
+    "id": "c99899ca-e178-4d09-b18a-58d155b93caf",
+    "name": "Palo Alto Cortex XSIAM",
+    "vendor": "Palo Alto Networks",
+    "version": "2.0",
+    "deploymentModel": "SaaS",
+    "methodType": "SOC Platform",
+    "licenseInfo": "Endpoint-based",
+    "createdAt": "2026-02-06T19:35:18.988940"
+  },
+  {
+    "id": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "name": "CrowdStrike Falcon LogScale",
+    "vendor": "CrowdStrike",
+    "version": "Cloud",
+    "deploymentModel": "SaaS",
+    "methodType": "Log Management",
+    "licenseInfo": "Ingest-based",
+    "createdAt": "2026-02-06T19:35:18.990811"
+  },
+  {
+    "id": "b5e13837-2b36-40f0-ad45-58f31bf98919",
+    "name": "Fortinet FortiSIEM",
+    "vendor": "Fortinet",
+    "version": "7.1",
+    "deploymentModel": "Hybrid",
+    "methodType": "SIEM",
+    "licenseInfo": "EPS-based",
+    "createdAt": "2026-02-06T19:35:18.991685"
+  },
+  {
+    "id": "ca801308-000a-4d0e-8e6d-1710f2521af4",
+    "name": "Microsoft Sentinel",
+    "vendor": "Microsoft",
+    "version": "Cloud",
+    "deploymentModel": "SaaS",
+    "methodType": "SIEM/SOAR",
+    "licenseInfo": "Consumption",
+    "createdAt": "2026-02-06T19:35:18.992720"
+  },
+  {
+    "id": "b333db4f-3371-45ea-8c75-ec7e0aaa5456",
+    "name": "Google SecOps (Chronicle)",
+    "vendor": "Google Cloud",
+    "version": "Cloud",
+    "deploymentModel": "SaaS",
+    "methodType": "SIEM",
+    "licenseInfo": "Employee-count",
+    "createdAt": "2026-02-06T19:35:18.993721"
+  }
+]

@@ -1,0 +1,898 @@
+[
+  {
+    "id": "DP-001",
+    "name": "Threat Coverage (Malware/Ransomware)",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Ability to detect and block common and advanced malware strains.",
+    "rubric": {
+      "1": "Minimal / < 20% coverage. Misses common threats.",
+      "2": "Basic / 20-50% coverage. Detects known threats only.",
+      "3": "Standard / 50-80% coverage. Good baseline detection.",
+      "4": "Advanced / 80-95% coverage. Detects most sophisticated threats.",
+      "5": "Comprehensive / > 95% coverage. Best-in-class efficacy."
+    }
+  },
+  {
+    "id": "DP-002",
+    "name": "Zero-Day Detection",
+    "category": "Detection & Prevention",
+    "weight": 3,
+    "description": "Efficacy in identifying unknown threats using heuristics/AI.",
+    "rubric": {
+      "1": "Minimal / < 20% coverage. Misses common threats.",
+      "2": "Basic / 20-50% coverage. Detects known threats only.",
+      "3": "Standard / 50-80% coverage. Good baseline detection.",
+      "4": "Advanced / 80-95% coverage. Detects most sophisticated threats.",
+      "5": "Comprehensive / > 95% coverage. Best-in-class efficacy."
+    }
+  },
+  {
+    "id": "DP-003",
+    "name": "Phishing Detection",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Capability to identify malicious emails and links.",
+    "rubric": {
+      "1": "Minimal / < 20% coverage. Misses common threats.",
+      "2": "Basic / 20-50% coverage. Detects known threats only.",
+      "3": "Standard / 50-80% coverage. Good baseline detection.",
+      "4": "Advanced / 80-95% coverage. Detects most sophisticated threats.",
+      "5": "Comprehensive / > 95% coverage. Best-in-class efficacy."
+    }
+  },
+  {
+    "id": "DP-004",
+    "name": "False Positive Rate",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Frequency of incorrect alerts (Higher score = Lower FP rate).",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DP-005",
+    "name": "Detection Latency",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Time taken from infection to alert generation.",
+    "rubric": {
+      "1": "Very Slow / > 48 hours. Manual process.",
+      "2": "Slow / 24-48 hours. Some tools used.",
+      "3": "Average / 4-24 hours. Standard industry speed.",
+      "4": "Fast / 1-4 hours. Highly automated.",
+      "5": "Real-time / < 1 hour. Fully autonomous."
+    }
+  },
+  {
+    "id": "DP-006",
+    "name": "MITRE ATT&CK Mapping",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Clarity and accuracy of mapping alerts to MITRE framework.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DP-007",
+    "name": "Cloud Payload Analysis",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Support for cloud-native threat vectors.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RA-001",
+    "name": "SOAR Capabilities",
+    "category": "Response & Automation",
+    "weight": 3,
+    "description": "Native orchestration and automation features.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RA-002",
+    "name": "Playbook Flexibility",
+    "category": "Response & Automation",
+    "weight": 2,
+    "description": "Ease of creating and modifying response playbooks.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RA-003",
+    "name": "Automated Remediation",
+    "category": "Response & Automation",
+    "weight": 3,
+    "description": "Ability to auto-isolate, block, or kill processes.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RA-004",
+    "name": "Alert Triaging Speed",
+    "category": "Response & Automation",
+    "weight": 2,
+    "description": "Efficiency of the workflow for analysts to triage alerts.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RA-005",
+    "name": "Incident Ticketing Integration",
+    "category": "Response & Automation",
+    "weight": 1,
+    "description": "Two-way sync with Jira, ServiceNow, etc.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IE-001",
+    "name": "API Availability",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Comprehensive and well-documented API support.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IE-002",
+    "name": "Log Ingestion (Multi-format)",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Support for Syslog, CEF, JSON, and custom formats.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IE-003",
+    "name": "Third-party Integrations",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Ecosystem of pre-built connectors.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IE-004",
+    "name": "Custom Scripting",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Ability to run Python/PowerShell scripts.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IE-005",
+    "name": "Hybrid/Multi-cloud Support",
+    "category": "Integration & Extensibility",
+    "weight": 3,
+    "description": "Unified visibility across On-prem, AWS, Azure, GCP.",
+    "rubric": {
+      "1": "None / Community forums only.",
+      "2": "Basic / Email only, slow response.",
+      "3": "Standard / 8x5 support, 24h SLA.",
+      "4": "Premium / 24x7 support, 4h SLA.",
+      "5": "Elite / Dedicated TAM, < 1h SLA."
+    }
+  },
+  {
+    "id": "PS-001",
+    "name": "Log Throughput",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Events per second (EPS) handling capacity.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "PS-002",
+    "name": "Search Speed (Historical)",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Speed of querying 30+ days of cold data.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "PS-003",
+    "name": "Resource Efficiency",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "CPU/RAM usage on agents or collectors.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "PS-004",
+    "name": "Latency Under Load",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Performance stability during alert storms.",
+    "rubric": {
+      "1": "Very Slow / > 48 hours. Manual process.",
+      "2": "Slow / 24-48 hours. Some tools used.",
+      "3": "Average / 4-24 hours. Standard industry speed.",
+      "4": "Fast / 1-4 hours. Highly automated.",
+      "5": "Real-time / < 1 hour. Fully autonomous."
+    }
+  },
+  {
+    "id": "PS-005",
+    "name": "Scalability Architecture",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Ease of adding nodes/collectors.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DU-001",
+    "name": "Deployment Flexibility",
+    "category": "Deployment & Usability",
+    "weight": 2,
+    "description": "SaaS vs On-prem vs Hybrid options.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DU-002",
+    "name": "Installation Ease",
+    "category": "Deployment & Usability",
+    "weight": 1,
+    "description": "Time and effort to get up and running.",
+    "rubric": {
+      "1": "Very Difficult / requires expert knowledge constantly.",
+      "2": "Difficult / steep learning curve, poor UI.",
+      "3": "Average / typical UI, some training needed.",
+      "4": "Easy / intuitive UI, minimal training.",
+      "5": "Seamless / requires zero training, consumer-grade UX."
+    }
+  },
+  {
+    "id": "DU-003",
+    "name": "Dashboard UX",
+    "category": "Deployment & Usability",
+    "weight": 3,
+    "description": "Clarity, aesthetics, and customizability of dashboards.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DU-004",
+    "name": "Analyst Workflow",
+    "category": "Deployment & Usability",
+    "weight": 3,
+    "description": "Reduce click-fatigue and intuitive drill-downs.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DU-005",
+    "name": "Documentation Quality",
+    "category": "Deployment & Usability",
+    "weight": 1,
+    "description": "Completeness of guides and KB articles.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "DU-006",
+    "name": "Training & Certification",
+    "category": "Deployment & Usability",
+    "weight": 1,
+    "description": "Availability of vendor training resources.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RC-001",
+    "name": "Compliance Reports",
+    "category": "Reporting & Compliance",
+    "weight": 2,
+    "description": "Pre-built PCI-DSS, GDPR, HIPAA reports.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RC-002",
+    "name": "Custom Reporting",
+    "category": "Reporting & Compliance",
+    "weight": 2,
+    "description": "Drag-and-drop report builder.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RC-003",
+    "name": "Audit Logging",
+    "category": "Reporting & Compliance",
+    "weight": 2,
+    "description": "Granular logging of user actions.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "RC-004",
+    "name": "Data Retention",
+    "category": "Reporting & Compliance",
+    "weight": 1,
+    "description": "Flexibility of hot/cold storage retention.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "CL-001",
+    "name": "License Cost",
+    "category": "Cost & Licensing",
+    "weight": 3,
+    "description": "Competitive pricing (Higher score = Better value).",
+    "rubric": {
+      "1": "Very Expensive / significantly above budget.",
+      "2": "Expensive / above average market rate.",
+      "3": "Market Rate / competitive pricing.",
+      "4": "Good Value / below average cost.",
+      "5": "Excellent Value / significantly below market rate."
+    }
+  },
+  {
+    "id": "CL-002",
+    "name": "Hidden Fees",
+    "category": "Cost & Licensing",
+    "weight": 2,
+    "description": "Data ingress/egress or storage costs transparency.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "CL-003",
+    "name": "License Flexibility",
+    "category": "Cost & Licensing",
+    "weight": 2,
+    "description": "Transferability and scaling terms.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "CL-004",
+    "name": "Maintenance Costs",
+    "category": "Cost & Licensing",
+    "weight": 1,
+    "description": "Annual support and renewal fees.",
+    "rubric": {
+      "1": "Very Expensive / significantly above budget.",
+      "2": "Expensive / above average market rate.",
+      "3": "Market Rate / competitive pricing.",
+      "4": "Good Value / below average cost.",
+      "5": "Excellent Value / significantly below market rate."
+    }
+  },
+  {
+    "id": "MS-001",
+    "name": "Vendor Support SLA",
+    "category": "Miscellaneous",
+    "weight": 2,
+    "description": "Responsiveness of technical support.",
+    "rubric": {
+      "1": "None / Community forums only.",
+      "2": "Basic / Email only, slow response.",
+      "3": "Standard / 8x5 support, 24h SLA.",
+      "4": "Premium / 24x7 support, 4h SLA.",
+      "5": "Elite / Dedicated TAM, < 1h SLA."
+    }
+  },
+  {
+    "id": "MS-002",
+    "name": "Community Ecosystem",
+    "category": "Miscellaneous",
+    "weight": 1,
+    "description": "User forums, marketplace, and peer support.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "MS-003",
+    "name": "Threat Intel Feeds",
+    "category": "Miscellaneous",
+    "weight": 2,
+    "description": "Quality of out-of-the-box intelligence.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "MS-004",
+    "name": "Roadmap Innovation",
+    "category": "Miscellaneous",
+    "weight": 1,
+    "description": "Vendor's commitment to new features.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "MS-005",
+    "name": "Patch Management",
+    "category": "Miscellaneous",
+    "weight": 1,
+    "description": "Ease of updating the platform.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "AI-001",
+    "name": "AI Attack Simulation",
+    "category": "AI Capabilities",
+    "weight": 3,
+    "description": "Capability to simulate AI-driven attacks for testing.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "AI-002",
+    "name": "Automated Threat Hunting",
+    "category": "AI Capabilities",
+    "weight": 3,
+    "description": "AI-driven proactive threat hunting capabilities.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "ECO-001",
+    "name": "Marketplace maturity",
+    "category": "Ecosystem",
+    "weight": 2,
+    "description": "Number and quality of available integrations in marketplace.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "ECO-002",
+    "name": "Community Support",
+    "category": "Ecosystem",
+    "weight": 1,
+    "description": "Active community forums and knowledge sharing.",
+    "rubric": {
+      "1": "None / Community forums only.",
+      "2": "Basic / Email only, slow response.",
+      "3": "Standard / 8x5 support, 24h SLA.",
+      "4": "Premium / 24x7 support, 4h SLA.",
+      "5": "Elite / Dedicated TAM, < 1h SLA."
+    }
+  },
+  {
+    "id": "IAM-001",
+    "name": "MFA Integration",
+    "category": "Identity & Access",
+    "weight": 3,
+    "description": "Native support for Multi-Factor Authentication logs and correlation.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IAM-002",
+    "name": "PAM Monitoring",
+    "category": "Identity & Access",
+    "weight": 3,
+    "description": "Privileged Access Management monitoring and alerting.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IAM-003",
+    "name": "User Lifecycle Analysis",
+    "category": "Identity & Access",
+    "weight": 2,
+    "description": "Tracking user creation, promotion, and termination anomalies.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "IAM-004",
+    "name": "UEBA - Insider Threat",
+    "category": "Identity & Access",
+    "weight": 3,
+    "description": "AI-driven detection of malicious insider behavior.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "NET-001",
+    "name": "NTA/NDR Capabilities",
+    "category": "Network Security",
+    "weight": 3,
+    "description": "Network Traffic Analysis and anomaly detection.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "NET-002",
+    "name": "PCAP Analysis",
+    "category": "Network Security",
+    "weight": 2,
+    "description": "Ability to store and analyze Packet Captures.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "NET-003",
+    "name": "Firewall Correlation",
+    "category": "Network Security",
+    "weight": 2,
+    "description": "Cross-referencing firewall logs with threat intel.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "NET-004",
+    "name": "DNS Security",
+    "category": "Network Security",
+    "weight": 2,
+    "description": "Detection of DGA, tunneling, and malicious domains.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "PRV-001",
+    "name": "Data Loss Prevention (DLP)",
+    "category": "Data Privacy",
+    "weight": 2,
+    "description": "Integration with DLP solutions for exfiltration detection.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "PRV-002",
+    "name": "GDPR/CCPA Masks",
+    "category": "Data Privacy",
+    "weight": 2,
+    "description": "Obfuscation of PII in logs and reports.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "PRV-003",
+    "name": "Data Sovereignty",
+    "category": "Data Privacy",
+    "weight": 2,
+    "description": "Control over where log data is stored geographically.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "FOR-001",
+    "name": "Timeline Reconstruction",
+    "category": "Forensics",
+    "weight": 3,
+    "description": "Visual reconstruction of attack kill-chains.",
+    "rubric": {
+      "1": "Very Slow / > 48 hours. Manual process.",
+      "2": "Slow / 24-48 hours. Some tools used.",
+      "3": "Average / 4-24 hours. Standard industry speed.",
+      "4": "Fast / 1-4 hours. Highly automated.",
+      "5": "Real-time / < 1 hour. Fully autonomous."
+    }
+  },
+  {
+    "id": "FOR-002",
+    "name": "Artifact Extraction",
+    "category": "Forensics",
+    "weight": 2,
+    "description": "Auto-extraction of hashes, IPs, and files for analysis.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "FOR-003",
+    "name": "Chain of Custody",
+    "category": "Forensics",
+    "weight": 1,
+    "description": "Immutable audit trails for evidence handling.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "CLD-001",
+    "name": "Kubernetes Monitoring",
+    "category": "Cloud Native",
+    "weight": 3,
+    "description": "Visibility into K8s pods, nodes, and API calls.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "CLD-002",
+    "name": "Serverless Security",
+    "category": "Cloud Native",
+    "weight": 2,
+    "description": "Monitoring Lambda/Functions for malicious execution.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "CLD-003",
+    "name": "IaC Scanning",
+    "category": "Cloud Native",
+    "weight": 2,
+    "description": "Scanning Terraform/CloudFormation for misconfigs.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "VM-001",
+    "name": "Scanner Integration",
+    "category": "Vulnerability Mgmt",
+    "weight": 2,
+    "description": "Ingestion of Nessus, Qualys, Rapid7 data.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  },
+  {
+    "id": "VM-002",
+    "name": "Risk Prioritization",
+    "category": "Vulnerability Mgmt",
+    "weight": 3,
+    "description": "Correlating CVEs with active threat intelligence.",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes defined.",
+      "3": "Defined / Process documented and repeatable.",
+      "4": "Managed / Metrics collected and monitored.",
+      "5": "Optimized / Automated and continuously improving."
+    }
+  }
+]

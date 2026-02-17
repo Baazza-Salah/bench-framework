@@ -1,0 +1,548 @@
+[
+  {
+    "id": "DP-001",
+    "name": "Threat Coverage (Malware/Ransomware)",
+    "category": "Detection & Prevention",
+    "weight": 3,
+    "description": "Effectiveness in detecting and blocking commodity and advanced malware/ransomware strains.",
+    "rubric": {
+      "1": "Legacy / Signature-based only. < 70% detection rate against modern ransomware.",
+      "2": "Basic / Signature + partial heuristics. Misses polymorphic threats.",
+      "3": "Competent / 90%+ detection of known threats. Some behavioral analysis.",
+      "4": "Advanced / 99% detection. Robust behavioral blocking & ransomware rollback.",
+      "5": "World-Class / 100% efficacy in major tests (MITRE/AV-TEST). Zero-delay blocking."
+    }
+  },
+  {
+    "id": "DP-002",
+    "name": "Zero-Day Detection",
+    "category": "Detection & Prevention",
+    "weight": 3,
+    "description": "Capability to identify unknown threats using advanced AI/ML and behavioral heuristics without prior signatures.",
+    "rubric": {
+      "1": "None / Relies entirely on known signatures/hashes.",
+      "2": "Weak / High false positive rate on unknown files. Sandbox took > 10 mins.",
+      "3": "Moderate / Detects common unknown packers/variants. ~5 min verdict.",
+      "4": "Strong / AI-driven pre-execution prevention. < 2 min verdict for unknowns.",
+      "5": "Leading / Real-time (< 30s) blocking of never-before-seen payloads via deep learning."
+    }
+  },
+  {
+    "id": "DP-003",
+    "name": "Phishing & Email Security",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Integration and efficacy in detecting malicious emails, BEC, and malicious links/attachments.",
+    "rubric": {
+      "1": "None / No email integration or reliance on external gateway only.",
+      "2": "Basic / Static blacklisting of domains/senders.",
+      "3": "Standard / NLP-based checking for body text. Attachment sandboxing.",
+      "4": "Advanced / API-level inbox remediation. Computer vision for credential harvesting pages.",
+      "5": "Comprehensive / Integrated user training, auto-clawback, and social graph analysis."
+    }
+  },
+  {
+    "id": "DP-004",
+    "name": "False Positive Rate",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Accuracy of alerts to minimize alert fatigue.",
+    "rubric": {
+      "1": "Poor / > 20% of alerts are false positives. Unusable for automation.",
+      "2": "Below Average / 10-20% FP rate. Constant tuning required.",
+      "3": "Average / 5-10% FP rate. Manageable with a dedicated analyst.",
+      "4": "Good / < 5% FP rate. High confidence in critical alerts.",
+      "5": "Excellent / < 1% FP rate. Alerts are actionable by default."
+    }
+  },
+  {
+    "id": "DP-005",
+    "name": "Detection Latency",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Time elapsed between the malicious activity and the alert generation.",
+    "rubric": {
+      "1": "Laggy / > 1 hour delay for critical alerts.",
+      "2": "Slow / 15-60 minutes delay. Batch processing evident.",
+      "3": "Standard / 1-15 minutes delay. Near real-time for some logs.",
+      "4": "Fast / < 1 minute for local events. < 5 mins for cloud logs.",
+      "5": "Real-time / Sub-second detection and alerting pipeline."
+    }
+  },
+  {
+    "id": "DP-006",
+    "name": "MITRE ATT&CK Mapping",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Depth and accuracy of alert mapping to MITRE TTPs.",
+    "rubric": {
+      "1": "None / Alerts have no framework context.",
+      "2": "Superficial / Maps to high-level tactics only (e.g., 'Execution').",
+      "3": "Standard / Maps to technique IDs (T1xxx) but lacks sub-technique detail.",
+      "4": "Detailed / Maps to sub-techniques. Includes prevention guidance.",
+      "5": "Actionable / Dynamic mapping with coverage heatmaps and gap analysis."
+    }
+  },
+  {
+    "id": "DP-007",
+    "name": "Cloud Workload Protection",
+    "category": "Detection & Prevention",
+    "weight": 2,
+    "description": "Detection capabilities specific to containers, serverless, and cloud VMs.",
+    "rubric": {
+      "1": "None / Agent does not support cloud environments.",
+      "2": "Basic / Traditional agent installed on cloud VMs only.",
+      "3": "Moderate / K8s node visibility. AWS flows.",
+      "4": "Advanced / DaemonSets for K8s, Fargate support, API scanning.",
+      "5": "Native / Agentless scanning + Runtime protection across multi-cloud."
+    }
+  },
+  {
+    "id": "RA-001",
+    "name": "SOAR / Automation Capabilities",
+    "category": "Response & Automation",
+    "weight": 3,
+    "description": "Native capabilities to orchestrate workflows and automate responses.",
+    "rubric": {
+      "1": "Manual / No automation. Analyst must manually perform every step.",
+      "2": "Scripted / Simple 'if-this-then-that' scripts (e.g., email notification).",
+      "3": "Partial / Pre-built playbooks for common tasks (e.g., block IP, isolate host).",
+      "4": "Extensive / Visual playbook editor, multi-step branching logic, approval workflows.",
+      "5": "Autonomous / AI-recommended actions and fully self-healing workflows for Tier 1 incidents."
+    }
+  },
+  {
+    "id": "RA-002",
+    "name": "Playbook Ecosystem",
+    "category": "Response & Automation",
+    "weight": 2,
+    "description": "Availability and quality of out-of-the-box response playbooks.",
+    "rubric": {
+      "1": "Empty / Build from scratch only.",
+      "2": "Limited / < 10 basic templates provided.",
+      "3": "Standard / 20-50 common scenario playbooks (phishing, malware).",
+      "4": "Rich / 100+ verified partner integrations and playbooks.",
+      "5": "Community-Driven / Marketplace with thousands of community/vendor maintained playbooks."
+    }
+  },
+  {
+    "id": "RA-003",
+    "name": "Remediation Depth",
+    "category": "Response & Automation",
+    "weight": 3,
+    "description": "Granularity of response actions available on endpoints/assets.",
+    "rubric": {
+      "1": "None / Read-only visibility.",
+      "2": "Coarse / Full isolation or nothing.",
+      "3": "Basic / IP blocking, Process kill, Hash ban.",
+      "4": "Granular / Delete file, registry edit, service restart, user disable.",
+      "5": "Surgical / Live shell access, memory dump, script injection, granular firewall control."
+    }
+  },
+  {
+    "id": "RA-004",
+    "name": "Investigation Workbench",
+    "category": "Response & Automation",
+    "weight": 2,
+    "description": "Quality of the interface for analysts to triage and investigate.",
+    "rubric": {
+      "1": "Disjointed / Multiple browser tabs needed. Raw log views only.",
+      "2": "Basic / Simple aggregation of alerts. No correlation visualizer.",
+      "3": "Functional / Timeline view, pivoted searches, basic correlation.",
+      "4": "Streamlined / Graph view of assets/threats, integrated threat intel lookup.",
+      "5": "Integrated / Unified workspace. One-click pivoting, auto-enriched artifacts, collaboration tools."
+    }
+  },
+  {
+    "id": "RA-005",
+    "name": "Ticketing Integration",
+    "category": "Response & Automation",
+    "weight": 1,
+    "description": "Bi-directional sync with ITSM tools (Jira, ServiceNow).",
+    "rubric": {
+      "1": "None / Copy-paste required.",
+      "2": "Uni-directional / Can send emails/webhooks to open tickets.",
+      "3": "Basic Sync / Opens tickets via API. No status updates back.",
+      "4": "Bi-directional / Status/Comments sync both ways.",
+      "5": "Native App / Deep app integration with custom fields and workflow mapping."
+    }
+  },
+  {
+    "id": "IE-001",
+    "name": "API Completeness",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Extent to which platform features are accessible via API.",
+    "rubric": {
+      "1": "Closed / No public API.",
+      "2": "Limited / Read-only API or limited endpoints.",
+      "3": "Standard / Most data queryable. Some configuration gaps.",
+      "4": "Robust / comprehensive REST/GraphQL API for data & config.",
+      "5": "API-First / 100% feature parity. SDKs available in Python/Go/JS."
+    }
+  },
+  {
+    "id": "IE-002",
+    "name": "Data Ingestion Flexibility",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Ability to parse and normalize logs from custom/diverse sources.",
+    "rubric": {
+      "1": "Rigid / Vendor-specific agents only.",
+      "2": "Standard / Supports Syslog/CEF/LEEF. Hard to parse custom apps.",
+      "3": "Flexible / JSON/XML parsing. Regex-based custom parsers.",
+      "4": "Universal / Smart connectors, auto-schema detection, Logstash/Fluentd support.",
+      "5": "Schemaless / Ingest anything. Search-time extraction. Zero parsing overhead."
+    }
+  },
+  {
+    "id": "IE-003",
+    "name": "Ecosystem Integrations",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Breadth of pre-built technology partner integrations.",
+    "rubric": {
+      "1": "Isolated / Proprietary stack only.",
+      "2": "Minimal / < 20 major vendors supported.",
+      "3": "Average / 50-100 integrations (Major Cloud, FW, EDR).",
+      "4": "Extensive / 300+ seamless integrations.",
+      "5": "Universal / 500+ integrations + Open Collector framework."
+    }
+  },
+  {
+    "id": "IE-004",
+    "name": "Custom Detection Logic",
+    "category": "Integration & Extensibility",
+    "weight": 2,
+    "description": "Language and flexibility for writing custom detection rules.",
+    "rubric": {
+      "1": "None / Vendor black-box only.",
+      "2": "Basic / Simple UI builders (AND/OR logic).",
+      "3": "Intermediate / Proprietary query language (e.g., KQL, SPL).",
+      "4": "Advanced / SIGMA rule support, Yara support.",
+      "5": "Code-Level / Python/Lua scripting for complex stateful logic."
+    }
+  },
+  {
+    "id": "IE-005",
+    "name": "Multi-Tenancy",
+    "category": "Integration & Extensibility",
+    "weight": 3,
+    "description": "Support for MSSP/Hierarchical data separation.",
+    "rubric": {
+      "1": "None / Single tenant only.",
+      "2": "Weak / Logical separation but shared RBAC.",
+      "3": "Functional / Separate data silos, shared config.",
+      "4": "Robust / Full RBAC, varied retention per tenant, cross-tenant hunting.",
+      "5": "Carrier-Grade / physical separation options, white-labeling, infinite nesting."
+    }
+  },
+  {
+    "id": "PS-001",
+    "name": "Ingestion Throughput",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Events Per Second (EPS) capability without lag.",
+    "rubric": {
+      "1": "Low / < 1k EPS. Struggles with bursts.",
+      "2": "Medium / 1k-5k EPS. Standard SMB performance.",
+      "3": "High / 5k-20k EPS. Enterprise standard.",
+      "4": "Very High / 20k-100k EPS. Handles high-volume log sources (DNS/Flow).",
+      "5": "Hyperscale / > 100k EPS. Horizontal auto-scaling."
+    }
+  },
+  {
+    "id": "PS-002",
+    "name": "Search Speed (Hot Data)",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Query response time for last 24 hours of data.",
+    "rubric": {
+      "1": "Slow / Minutes to return simple queries.",
+      "2": "Acceptable / 10-30 seconds for standard queries.",
+      "3": "Fast / < 5 seconds for indexed fields.",
+      "4": "Instant / Sub-second for most queries.",
+      "5": "Real-time / Instant results with live-tail capabilities."
+    }
+  },
+  {
+    "id": "PS-003",
+    "name": "Historical Search (Cold Data)",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Ability and speed to search archived/cold logs (30d+).",
+    "rubric": {
+      "1": "Impossible / Must re-hydrate data manually.",
+      "2": "Painful / Hours to run queries over long timeframes.",
+      "3": "Workable / Slower than hot, but runs in background without timeouts.",
+      "4": "Seamless / Search hot & cold transparently (Tiered storage).",
+      "5": "Instant / innovative format allowing sub-second capability on years of data."
+    }
+  },
+  {
+    "id": "PS-004",
+    "name": "Agent Resource Footprint",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "CPU/RAM impact on endpoints.",
+    "rubric": {
+      "1": "Heavy / Noticeable slowdown (> 5% CPU). User complaints.",
+      "2": "Moderate / spikes during scanning, steady otherwise.",
+      "3": "Light / < 2% CPU average. < 200MB RAM.",
+      "4": "Very Light / < 1% CPU. < 100MB RAM.",
+      "5": "Invisible / Kernel-level efficiency. Negligible impact."
+    }
+  },
+  {
+    "id": "PS-005",
+    "name": "Scalability Architecture",
+    "category": "Performance & Scalability",
+    "weight": 2,
+    "description": "Ease of expanding capacity.",
+    "rubric": {
+      "1": "Fixed / Appliance-based hard limits.",
+      "2": "Vertical / Must upgrade hardware/VM size.",
+      "3": "Clustered / Add nodes manually.",
+      "4": "Elastic / Auto-scaling groups (Cloud).",
+      "5": "Serverless / Fully managed SaaS. No infrastructure management."
+    }
+  },
+  {
+    "id": "DU-001",
+    "name": "Deployment Time-to-Value",
+    "category": "Deployment & Usability",
+    "weight": 2,
+    "description": "Effort required to go from purchase to actionable insights.",
+    "rubric": {
+      "1": "Months / Requires professional services.",
+      "2": "Weeks / Complex config and tuning.",
+      "3": "Days / Standard cloud deployment.",
+      "4": "Hours / SaaS signup + Agent deploy.",
+      "5": "Minutes / Zero-touch, auto-discovery."
+    }
+  },
+  {
+    "id": "DU-002",
+    "name": "User Interface / UX",
+    "category": "Deployment & Usability",
+    "weight": 3,
+    "description": "Intuitiveness and aesthetic quality of the console.",
+    "rubric": {
+      "1": "Archaic / CLI-heavy or 90s era UI.",
+      "2": "Cluttered / Information overload, hard to navigate.",
+      "3": "Functional / Standard dashboards. Learning curve exists.",
+      "4": "Modern / Clean, responsive, dark mode, intuitive workflows.",
+      "5": "Consumer-Grade / Delightful, gamified, contextual help, fully customizable."
+    }
+  },
+  {
+    "id": "DU-003",
+    "name": "Documentation & Learning",
+    "category": "Deployment & Usability",
+    "weight": 1,
+    "description": "Quality of self-help resources.",
+    "rubric": {
+      "1": "Poor / Outdated PDFs. Missing steps.",
+      "2": "Basic / Wiki-style, some gaps.",
+      "3": "Good / Searchable knowledge base, decent coverage.",
+      "4": "Excellent / Videos, interactive labs, active community.",
+      "5": "World-Class / Integrated academy, certification paths, in-product contextual guides."
+    }
+  },
+  {
+    "id": "DU-004",
+    "name": "Role-Based Access Control (RBAC)",
+    "category": "Deployment & Usability",
+    "weight": 1,
+    "description": "Granularity of user permissions.",
+    "rubric": {
+      "1": "None / Admin or Read-only.",
+      "2": "Basic / Pre-defined roles only.",
+      "3": "Standard / Custom roles, AD/LDAP integration.",
+      "4": "Granular / Field-level data masking, index-level access.",
+      "5": "Attribute-Based / Dynamic policy-based access control (ABAC)."
+    }
+  },
+  {
+    "id": "RC-001",
+    "name": "Compliance Reporting",
+    "category": "Reporting & Compliance",
+    "weight": 2,
+    "description": "Coverage of standard frameworks (PCI, HIPAA, GDPR, SOC2).",
+    "rubric": {
+      "1": "None / No pre-built reports.",
+      "2": "Skeletal / Generic reports requiring heavy modification.",
+      "3": "Standard / PDF packs for major regulations.",
+      "4": "Interactive / Drill-down compliance dashboards.",
+      "5": "Continuous / Real-time GRC monitoring and mapping."
+    }
+  },
+  {
+    "id": "RC-002",
+    "name": "Custom Reporting Engine",
+    "category": "Reporting & Compliance",
+    "weight": 2,
+    "description": "Flexibility in creating new reports.",
+    "rubric": {
+      "1": "None / Vendor reports only.",
+      "2": "Limited / Basic filters on existing templates.",
+      "3": "Visual / Drag-and-drop widget builder.",
+      "4": "Code-Based / SQL/BI tool integration.",
+      "5": "Limitless / Pixel-perfect embedded BI (e.g., Looker/Tableau integration)."
+    }
+  },
+  {
+    "id": "RC-003",
+    "name": "Data Retention Flexibility",
+    "category": "Reporting & Compliance",
+    "weight": 1,
+    "description": "Options for storing logs for compliance.",
+    "rubric": {
+      "1": "Fixed / Vendor driven (e.g., 30 days max).",
+      "2": "Tiered / Expensive to increase.",
+      "3": "Configurable / Per-index settings.",
+      "4": "Hybrid / Store locally or bring-your-own-storage (S3).",
+      "5": "Unlimited / Economical long-term cold storage inclusions."
+    }
+  },
+  {
+    "id": "CL-001",
+    "name": "Pricing Predictability",
+    "category": "Cost & Licensing",
+    "weight": 3,
+    "description": "Transparency and stability of cost.",
+    "rubric": {
+      "1": "Volatile / Volume-based (GB/day) with penalties.",
+      "2": "Complex / Mix of events, users, and module add-ons.",
+      "3": "Moderate / Node/Endpoint based. Predictable but expensive scale.",
+      "4": "Transparent / Flat fee or simplistic user/device bands.",
+      "5": "Value-Based / Unlimited data options. Pay for capability, not volume."
+    }
+  },
+  {
+    "id": "CL-002",
+    "name": "Total Cost of Ownership",
+    "category": "Cost & Licensing",
+    "weight": 2,
+    "description": "Holistic cost including infrastructure, admin, and license.",
+    "rubric": {
+      "1": "Very High / Expensive license + heavy hardware + dedicated staff.",
+      "2": "High / Moderate license but high maintenance.",
+      "3": "Average / Market standard.",
+      "4": "Low / SaaS efficiencies reduce admin cost.",
+      "5": "Minimal / High ROI. Displaces other tools to lower net spend."
+    }
+  },
+  {
+    "id": "MS-001",
+    "name": "Vendor Support Quality",
+    "category": "Miscellaneous",
+    "weight": 2,
+    "description": "Support SLA and technical competence.",
+    "rubric": {
+      "1": "Absent / Forum only.",
+      "2": "Basic / Email tickets, 24-48hr response.",
+      "3": "Standard / 24/7 Phone, tiered SLA.",
+      "4": "Premium / Dedicated Technical Account Manager (TAM).",
+      "5": "Partner / Engineering-level access, proactive health checks."
+    }
+  },
+  {
+    "id": "MS-002",
+    "name": "Threat Intelligence Quality",
+    "category": "Miscellaneous",
+    "weight": 2,
+    "description": "Quality of the native threat intel feed.",
+    "rubric": {
+      "1": "None / Bring your own.",
+      "2": "Open Source / Repackaged public feeds (OSINT).",
+      "3": "Commercial / Standard vendor feed.",
+      "4": "Premium / Top-tier unit (e.g., Unit42, Mandiant, Talos).",
+      "5": "Bespoke / Industry-specific intel + dark web monitoring."
+    }
+  },
+  {
+    "id": "AI-001",
+    "name": "AI/ML Efficacy",
+    "category": "AI Capabilities",
+    "weight": 3,
+    "description": "Effectiveness of AI features in noise reduction and detection.",
+    "rubric": {
+      "1": "Buzzword / Marketing only. Minimal impact.",
+      "2": "Basic / Static threshold tuning.",
+      "3": "Helpful / User Baseline Analytics (UEBA).",
+      "4": "Advanced / Automatic incident correlation, root cause analysis.",
+      "5": "Transformational / Generative AI Copilot (LLM) for querying/reporting/response."
+    }
+  },
+  {
+    "id": "ECO-001",
+    "name": "Marketplace Apps",
+    "category": "Ecosystem",
+    "weight": 1,
+    "description": "Availability of third-party apps.",
+    "rubric": {
+      "1": "None.",
+      "2": "Parse-only / TAs for parsing logs.",
+      "3": "Standard / Dashboards and connectors.",
+      "4": "Rich / Full-blown apps (e.g., Vulnerability mgmt module).",
+      "5": "Thriving / Developer platform with monetization."
+    }
+  },
+  {
+    "id": "IAM-001",
+    "name": "Identity Threat Detection",
+    "category": "Identity & Access",
+    "weight": 3,
+    "description": "Capabilities to detect compromised credentials and lateral movement.",
+    "rubric": {
+      "1": "None / Raw AD logs only.",
+      "2": "Basic / Brute force alerts.",
+      "3": "Standard / Impossible travel, new location.",
+      "4": "Advanced / Kerberoasting, Golden Ticket detection, LDAP pattern analysis.",
+      "5": "Identity-First / Unified ITDR. Real-time MFA prompt bombing detection."
+    }
+  },
+  {
+    "id": "NET-001",
+    "name": "Network Traffic Analysis (NTA)",
+    "category": "Network Security",
+    "weight": 2,
+    "description": "Analysis of network flows and PCAP.",
+    "rubric": {
+      "1": "None.",
+      "2": "Flows / NetFlow/IPFIX ingestion.",
+      "3": "Metadata / L7 protocol analysis (DNS/HTTP).",
+      "4": "PCAP / Full packet capture on demand.",
+      "5": "Deep / Encrypted traffic analysis (JA3), automatic PCAP extraction."
+    }
+  },
+  {
+    "id": "FOR-001",
+    "name": "Forensic Capabilities",
+    "category": "Forensics",
+    "weight": 2,
+    "description": "Tools for deep-dive investigation.",
+    "rubric": {
+      "1": "None.",
+      "2": "Log-only / Historical log review.",
+      "3": "Basic / File retrieval.",
+      "4": "Advanced / Live memory analysis, MFT parsing.",
+      "5": "Complete / Full remote forensics suite integrated."
+    }
+  },
+  {
+    "id": "VM-001",
+    "name": "Vulnerability Context",
+    "category": "Vulnerability Mgmt",
+    "weight": 2,
+    "description": "Integration of vuln data into incident context.",
+    "rubric": {
+      "1": "None.",
+      "2": "Siloed / Separate dashboard tab.",
+      "3": "Visual / Vulnerabilities shown on asset view.",
+      "4": "Correlated / Alerts prioritized by asset vulnerability status.",
+      "5": "Predictive / Attack path modeling based on vulnerabilities."
+    }
+  }
+]

@@ -1,0 +1,2400 @@
+[
+  {
+    "solutionId": "c99899ca-e178-4d09-b18a-58d155b93caf",
+    "timestamp": "2026-02-06T20:34:57.888630",
+    "items": [
+      {
+        "criterionId": "DP-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Vendor Demo",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "DP-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "DP-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "DP-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "DP-006",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "DP-007",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "RA-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Vendor Demo",
+        "score": 3
+      },
+      {
+        "criterionId": "RA-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RA-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RA-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RA-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IE-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IE-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IE-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IE-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IE-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-006",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 2
+      },
+      {
+        "criterionId": "CL-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CL-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CL-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CL-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "AI-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "AI-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "ECO-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "ECO-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PRV-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PRV-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PRV-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "FOR-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "FOR-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "FOR-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CLD-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CLD-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CLD-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "VM-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "VM-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "solutionId": "b5e13837-2b36-40f0-ad45-58f31bf98919",
+    "timestamp": "2026-02-06T19:35:18.992720",
+    "items": [
+      {
+        "criterionId": "DP-001",
+        "score": 4,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-006",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-007",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-006",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-004",
+        "score": 5,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "AI-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "AI-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "ECO-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "ECO-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "VM-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "VM-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      }
+    ]
+  },
+  {
+    "solutionId": "ca801308-000a-4d0e-8e6d-1710f2521af4",
+    "timestamp": "2026-02-06T19:35:18.993721",
+    "items": [
+      {
+        "criterionId": "DP-001",
+        "score": 5,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-002",
+        "score": 4,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-006",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-007",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-006",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-004",
+        "score": 2,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "AI-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "AI-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "ECO-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "ECO-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "VM-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "VM-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      }
+    ]
+  },
+  {
+    "solutionId": "b333db4f-3371-45ea-8c75-ec7e0aaa5456",
+    "timestamp": "2026-02-06T20:35:40.747677",
+    "items": [
+      {
+        "criterionId": "DP-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-006",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "DP-007",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "RA-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "RA-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "RA-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "RA-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "RA-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "IE-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "IE-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "IE-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "IE-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "IE-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 1
+      },
+      {
+        "criterionId": "PS-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PS-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "DU-006",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "RC-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 5
+      },
+      {
+        "criterionId": "CL-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CL-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CL-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CL-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "MS-005",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "AI-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "AI-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "ECO-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "ECO-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "IAM-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "NET-004",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PRV-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PRV-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "PRV-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "FOR-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "FOR-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "FOR-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CLD-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CLD-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "CLD-003",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "VM-001",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      },
+      {
+        "criterionId": "VM-002",
+        "evidence": "Expert Analysis based on market capabilities.",
+        "mode": "Analyst Estimate",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "timestamp": "2026-02-06T19:35:18.991685",
+    "items": [
+      {
+        "criterionId": "DP-001",
+        "score": 5,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-002",
+        "score": 5,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-004",
+        "score": 5,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-006",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DP-007",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RA-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IE-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PS-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "DU-006",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "RC-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CL-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "MS-005",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "AI-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "AI-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "ECO-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "ECO-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "IAM-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "NET-004",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "PRV-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "FOR-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "CLD-003",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "VM-001",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      },
+      {
+        "criterionId": "VM-002",
+        "score": 3,
+        "mode": "Analyst Estimate",
+        "evidence": "Expert Analysis based on market capabilities."
+      }
+    ]
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-001",
+    "score": 5,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-002",
+    "score": 5,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-003",
+    "score": 4,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-004",
+    "score": 5,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-005",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-006",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DP-007",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RA-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RA-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RA-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RA-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RA-005",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IE-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IE-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IE-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IE-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IE-005",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PS-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PS-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PS-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PS-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PS-005",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DU-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DU-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DU-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DU-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DU-005",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "DU-006",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RC-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RC-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RC-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "RC-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CL-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CL-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CL-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CL-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "MS-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "MS-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "MS-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "MS-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "MS-005",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "AI-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "AI-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "ECO-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "ECO-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IAM-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IAM-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IAM-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "IAM-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "NET-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "NET-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "NET-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "NET-004",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PRV-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PRV-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "PRV-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "FOR-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "FOR-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "FOR-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CLD-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CLD-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "CLD-003",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "VM-001",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  },
+  {
+    "solutionId": "d30f8e4b-3abb-4284-8479-6eb2fca0aacc",
+    "criterionId": "VM-002",
+    "score": 3,
+    "mode": "Analyst Estimate",
+    "evidence": "Expert Analysis based on market capabilities."
+  }
+]
