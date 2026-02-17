@@ -40,8 +40,8 @@ const Layout = ({ children }) => {
                 <nav className="flex-1 px-4 overflow-y-auto">
                     <div className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 mt-2">Main Menu</div>
                     <NavItem to="/" icon={Home} label="Dashboard" />
-                    <NavItem to="/solution" icon={PlusCircle} label="Add Solution" />
-                    <NavItem to="/criteria" icon={Settings} label="Criteria Builder" />
+                    <NavItem to="/solution" icon={PlusCircle} label="Manage Solutions" />
+                    <NavItem to="/criteria" icon={Settings} label="Manage Criteria" />
                     <NavItem to="/compare" icon={BarChart2} label="Comparison" />
                     <NavItem to="/battle" icon={Swords} label="Battle Mode" />
                 </nav>

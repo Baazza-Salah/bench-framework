@@ -65,29 +65,48 @@ app.get('/api/solutions', (req, res) => {
 
 // Add solution
 app.post('/api/solutions', (req, res) => {
-  const solutions = readData(SOLUTIONS_FILE);
-  const newSolution = {
-    id: uuidv4(),
-    ...req.body,
-    createdAt: new Date().toISOString()
-  };
-  solutions.push(newSolution);
-  writeData(SOLUTIONS_FILE, solutions);
-  res.status(201).json(newSolution);
+  try {
+    const solutions = readData(SOLUTIONS_FILE);
+    const newSolution = {
+      id: uuidv4(),
+      ...req.body,
+      createdAt: new Date().toISOString()
+    };
+    solutions.push(newSolution);
+    if (writeData(SOLUTIONS_FILE, solutions)) {
+      res.status(201).json(newSolution);
+    } else {
+      res.status(500).json({ error: 'Failed to save solution' });
+    }
+  } catch (err) {
+    console.error("Error adding solution:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Update solution
 app.put('/api/solutions/:id', (req, res) => {
-  const solutions = readData(SOLUTIONS_FILE);
-  const index = solutions.findIndex(s => s.id === req.params.id);
+  try {
+    const solutions = readData(SOLUTIONS_FILE);
+    const index = solutions.findIndex(s => s.id === req.params.id);
 
-  if (index === -1) {
-    return res.status(404).json({ error: 'Solution not found' });
+    if (index === -1) {
+      return res.status(404).json({ error: 'Solution not found' });
+    }
+
+    // Protect ID from being overwritten if sent in body, but allow other updates
+    const { id, ...updateData } = req.body;
+    solutions[index] = { ...solutions[index], ...updateData };
+
+    if (writeData(SOLUTIONS_FILE, solutions)) {
+      res.json(solutions[index]);
+    } else {
+      res.status(500).json({ error: 'Failed to update solution' });
+    }
+  } catch (err) {
+    console.error("Error updating solution:", err);
+    res.status(500).json({ error: err.message });
   }
-
-  solutions[index] = { ...solutions[index], ...req.body };
-  writeData(SOLUTIONS_FILE, solutions);
-  res.json(solutions[index]);
 });
 
 // Delete solution
@@ -114,6 +133,72 @@ app.delete('/api/solutions/:id', (req, res) => {
 app.get('/api/criteria', (req, res) => {
   const criteria = readData(CRITERIA_FILE);
   res.json(criteria);
+});
+
+// Add criterion
+app.post('/api/criteria', (req, res) => {
+  try {
+    const criteria = readData(CRITERIA_FILE);
+    const newCriterion = {
+      id: uuidv4(),
+      ...req.body
+    };
+    criteria.push(newCriterion);
+    if (writeData(CRITERIA_FILE, criteria)) {
+      res.status(201).json(newCriterion);
+    } else {
+      res.status(500).json({ error: 'Failed to save criterion' });
+    }
+  } catch (err) {
+    console.error("Error adding criterion:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update criterion
+app.put('/api/criteria/:id', (req, res) => {
+  try {
+    const criteria = readData(CRITERIA_FILE);
+    const index = criteria.findIndex(c => c.id === req.params.id);
+
+    if (index === -1) {
+      return res.status(404).json({ error: 'Criterion not found' });
+    }
+
+    // Preserve ID, update other fields
+    criteria[index] = { ...criteria[index], ...req.body, id: req.params.id };
+
+    if (writeData(CRITERIA_FILE, criteria)) {
+      res.json(criteria[index]);
+    } else {
+      res.status(500).json({ error: 'Failed to update criterion' });
+    }
+  } catch (err) {
+    console.error("Error updating criterion:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Delete criterion
+app.delete('/api/criteria/:id', (req, res) => {
+  try {
+    let criteria = readData(CRITERIA_FILE);
+    const initialLength = criteria.length;
+    criteria = criteria.filter(c => c.id !== req.params.id);
+
+    if (criteria.length === initialLength) {
+      return res.status(404).json({ error: 'Criterion not found' });
+    }
+
+    if (writeData(CRITERIA_FILE, criteria)) {
+      res.json({ message: 'Criterion deleted successfully' });
+    } else {
+      res.status(500).json({ error: 'Failed to delete criterion' });
+    }
+  } catch (err) {
+    console.error("Error deleting criterion:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Get scores for a solution

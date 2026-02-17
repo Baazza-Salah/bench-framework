@@ -49,49 +49,83 @@ def get_solutions():
 
 @app.route('/api/solutions', methods=['POST'])
 def add_solution():
-    solutions = read_data(SOLUTIONS_FILE)
-    data = request.json
-    new_solution = {
-        'id': str(uuid.uuid4()),
-        'name': data.get('name'),
-        'vendor': data.get('vendor'),
-        'version': data.get('version'),
-        'deploymentModel': data.get('deploymentModel'),
-        'methodType': data.get('methodType'),
-        'licenseInfo': data.get('licenseInfo'),
-        'createdAt': datetime.now().isoformat()
-    }
-    solutions.append(new_solution)
-    write_data(SOLUTIONS_FILE, solutions)
-    return jsonify(new_solution), 201
+    try:
+        solutions = read_data(SOLUTIONS_FILE)
+        data = request.json
+        print(f"Adding solution: {data.get('name')}", flush=True)
+
+        new_solution = {
+            'id': str(uuid.uuid4()),
+            'name': data.get('name'),
+            'vendor': data.get('vendor'),
+            'version': data.get('version'),
+            'deploymentModel': data.get('deploymentModel'),
+            'methodType': data.get('methodType'),
+            'licenseInfo': data.get('licenseInfo'),
+            'createdAt': datetime.now().isoformat()
+        }
+        solutions.append(new_solution)
+        if write_data(SOLUTIONS_FILE, solutions):
+            return jsonify(new_solution), 201
+        else:
+            return jsonify({'error': 'Failed to write to storage'}), 500
+    except Exception as e:
+        print(f"Error in add_solution: {e}", flush=True)
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/solutions/<id>', methods=['PUT'])
 def update_solution(id):
-    solutions = read_data(SOLUTIONS_FILE)
-    for i, sol in enumerate(solutions):
-        if sol['id'] == id:
-            solutions[i].update(request.json)
-            write_data(SOLUTIONS_FILE, solutions)
-            return jsonify(solutions[i])
-    return jsonify({'error': 'Solution not found'}), 404
+    try:
+        solutions = read_data(SOLUTIONS_FILE)
+        data = request.json
+        print(f"Updating solution {id}: {data.get('name')}", flush=True)
+
+        for i, sol in enumerate(solutions):
+            if sol['id'] == id:
+                # Update fields but protect ID
+                update_data = data.copy()
+                if 'id' in update_data:
+                    del update_data['id']
+                
+                solutions[i].update(update_data)
+                
+                if write_data(SOLUTIONS_FILE, solutions):
+                    return jsonify(solutions[i])
+                else:
+                    return jsonify({'error': 'Failed to write to storage'}), 500
+        return jsonify({'error': 'Solution not found'}), 404
+    except Exception as e:
+        print(f"Error in update_solution: {e}", flush=True)
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/solutions/<id>', methods=['DELETE'])
 def delete_solution(id):
-    solutions = read_data(SOLUTIONS_FILE)
-    initial_len = len(solutions)
-    solutions = [s for s in solutions if s['id'] != id]
-    
-    if len(solutions) == initial_len:
-        return jsonify({'error': 'Solution not found'}), 404
-    
-    write_data(SOLUTIONS_FILE, solutions)
-    
-    # Delete associated scores
-    scores = read_data(SCORES_FILE)
-    scores = [s for s in scores if s['solutionId'] != id]
-    write_data(SCORES_FILE, scores)
-    
-    return jsonify({'message': 'Solution deleted'})
+    try:
+        solutions = read_data(SOLUTIONS_FILE)
+        print(f"Deleting solution {id}", flush=True)
+        
+        initial_len = len(solutions)
+        solutions = [s for s in solutions if s['id'] != id]
+        
+        if len(solutions) == initial_len:
+            return jsonify({'error': 'Solution not found'}), 404
+        
+        if not write_data(SOLUTIONS_FILE, solutions):
+             return jsonify({'error': 'Failed to write updates'}), 500
+        
+        # Delete associated scores
+        scores = read_data(SCORES_FILE)
+        initial_scores_len = len(scores)
+        scores = [s for s in scores if s['solutionId'] != id]
+        
+        if len(scores) != initial_scores_len:
+            print(f"Deleted {initial_scores_len - len(scores)} scores associated with solution {id}", flush=True)
+            write_data(SCORES_FILE, scores)
+        
+        return jsonify({'message': 'Solution deleted'})
+    except Exception as e:
+        print(f"Error in delete_solution: {e}", flush=True)
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/criteria', methods=['GET'])
 def get_criteria():
@@ -105,40 +139,72 @@ def get_scores(solution_id):
 
 @app.route('/api/criteria', methods=['POST'])
 def add_criterion():
-    criteria = read_data(CRITERIA_FILE)
-    data = request.json
-    new_criterion = {
-        'id': str(uuid.uuid4()),
-        'name': data.get('name'),
-        'category': data.get('category'),
-        'weight': int(data.get('weight', 3)),
-        'description': data.get('description', '')
-    }
-    criteria.append(new_criterion)
-    write_data(CRITERIA_FILE, criteria)
-    return jsonify(new_criterion), 201
+    try:
+        criteria = read_data(CRITERIA_FILE)
+        data = request.json
+        print(f"Adding criterion: {data.get('name')}", flush=True)
+
+        new_criterion = {
+            'id': str(uuid.uuid4()),
+            'name': data.get('name'),
+            'category': data.get('category'),
+            'weight': int(data.get('weight', 3)),
+            'description': data.get('description', ''),
+            'rubric': data.get('rubric', {})
+        }
+        criteria.append(new_criterion)
+        if write_data(CRITERIA_FILE, criteria):
+            return jsonify(new_criterion), 201
+        else:
+            return jsonify({'error': 'Failed to write to storage'}), 500
+    except Exception as e:
+        print(f"Error in add_criterion: {e}", flush=True)
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/criteria/<id>', methods=['PUT'])
 def update_criterion(id):
-    criteria = read_data(CRITERIA_FILE)
-    for i, crit in enumerate(criteria):
-        if crit['id'] == id:
-            criteria[i].update(request.json)
-            write_data(CRITERIA_FILE, criteria)
-            return jsonify(criteria[i])
-    return jsonify({'error': 'Criterion not found'}), 404
+    try:
+        criteria = read_data(CRITERIA_FILE)
+        data = request.json
+        print(f"Updating criterion {id}: {data.get('name')}", flush=True)
+
+        for i, crit in enumerate(criteria):
+            if crit['id'] == id:
+                # Update fields but protect ID
+                update_data = data.copy()
+                if 'id' in update_data:
+                    del update_data['id']
+                
+                criteria[i].update(update_data)
+                
+                if write_data(CRITERIA_FILE, criteria):
+                    return jsonify(criteria[i])
+                else:
+                    return jsonify({'error': 'Failed to write to storage'}), 500
+        return jsonify({'error': 'Criterion not found'}), 404
+    except Exception as e:
+        print(f"Error in update_criterion: {e}", flush=True)
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/criteria/<id>', methods=['DELETE'])
 def delete_criterion(id):
-    criteria = read_data(CRITERIA_FILE)
-    initial_len = len(criteria)
-    criteria = [c for c in criteria if c['id'] != id]
-    
-    if len(criteria) == initial_len:
-        return jsonify({'error': 'Criterion not found'}), 404
-    
-    write_data(CRITERIA_FILE, criteria)
-    return jsonify({'message': 'Criterion deleted'})
+    try:
+        criteria = read_data(CRITERIA_FILE)
+        print(f"Deleting criterion {id}", flush=True)
+        
+        initial_len = len(criteria)
+        criteria = [c for c in criteria if c['id'] != id]
+        
+        if len(criteria) == initial_len:
+            return jsonify({'error': 'Criterion not found'}), 404
+        
+        if write_data(CRITERIA_FILE, criteria):
+            return jsonify({'message': 'Criterion deleted'})
+        else:
+            return jsonify({'error': 'Failed to write to storage'}), 500
+    except Exception as e:
+        print(f"Error in delete_criterion: {e}", flush=True)
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/scores', methods=['POST'])
 def update_scores():

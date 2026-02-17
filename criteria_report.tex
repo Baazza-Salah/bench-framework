@@ -1,0 +1,584 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{colortbl}
+
+\geometry{a4paper, margin=1in}
+
+\title{SOC Benchmarking Framework \\ Criteria & Rubrics Report}
+\author{Generated Report}
+\date{\today}
+
+\definecolor{lightgray}{gray}{0.95}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{AI Capabilities}
+\subsection{AI/ML Efficacy (ID: AI-001)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Effectiveness of AI features in noise reduction and detection.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Buzzword / Marketing only. Minimal impact. \\ \hline
+2 & Basic / Static threshold tuning. \\ \hline
+3 & Helpful / User Baseline Analytics (UEBA). \\ \hline
+4 & Advanced / Automatic incident correlation, root cause analysis. \\ \hline
+5 & Transformational / Generative AI Copilot (LLM) for querying/reporting/response. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Cost \& Licensing}
+\subsection{Pricing Predictability (ID: CL-001)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Transparency and stability of cost.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Volatile / Volume-based (GB/day) with penalties. \\ \hline
+2 & Complex / Mix of events, users, and module add-ons. \\ \hline
+3 & Moderate / Node/Endpoint based. Predictable but expensive scale. \\ \hline
+4 & Transparent / Flat fee or simplistic user/device bands. \\ \hline
+5 & Value-Based / Unlimited data options. Pay for capability, not volume. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Total Cost of Ownership (ID: CL-002)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Holistic cost including infrastructure, admin, and license.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Very High / Expensive license + heavy hardware + dedicated staff. \\ \hline
+2 & High / Moderate license but high maintenance. \\ \hline
+3 & Average / Market standard. \\ \hline
+4 & Low / SaaS efficiencies reduce admin cost. \\ \hline
+5 & Minimal / High ROI. Displaces other tools to lower net spend. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Deployment \& Usability}
+\subsection{Deployment Time-to-Value (ID: DU-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Effort required to go from purchase to actionable insights.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Months / Requires professional services. \\ \hline
+2 & Weeks / Complex config and tuning. \\ \hline
+3 & Days / Standard cloud deployment. \\ \hline
+4 & Hours / SaaS signup + Agent deploy. \\ \hline
+5 & Minutes / Zero-touch, auto-discovery. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{User Interface / UX (ID: DU-002)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Intuitiveness and aesthetic quality of the console.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Archaic / CLI-heavy or 90s era UI. \\ \hline
+2 & Cluttered / Information overload, hard to navigate. \\ \hline
+3 & Functional / Standard dashboards. Learning curve exists. \\ \hline
+4 & Modern / Clean, responsive, dark mode, intuitive workflows. \\ \hline
+5 & Consumer-Grade / Delightful, gamified, contextual help, fully customizable. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Documentation \& Learning (ID: DU-003)}
+\textbf{Weight:} 1 \\
+\textbf{Description:} Quality of self-help resources.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Poor / Outdated PDFs. Missing steps. \\ \hline
+2 & Basic / Wiki-style, some gaps. \\ \hline
+3 & Good / Searchable knowledge base, decent coverage. \\ \hline
+4 & Excellent / Videos, interactive labs, active community. \\ \hline
+5 & World-Class / Integrated academy, certification paths, in-product contextual guides. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Role-Based Access Control (RBAC) (ID: DU-004)}
+\textbf{Weight:} 1 \\
+\textbf{Description:} Granularity of user permissions.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Admin or Read-only. \\ \hline
+2 & Basic / Pre-defined roles only. \\ \hline
+3 & Standard / Custom roles, AD/LDAP integration. \\ \hline
+4 & Granular / Field-level data masking, index-level access. \\ \hline
+5 & Attribute-Based / Dynamic policy-based access control (ABAC). \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Detection \& Prevention}
+\subsection{Threat Coverage (Malware/Ransomware) (ID: DP-001)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Effectiveness in detecting and blocking commodity and advanced malware/ransomware strains.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Legacy / Signature-based only. $<$ 70\% detection rate against modern ransomware. \\ \hline
+2 & Basic / Signature + partial heuristics. Misses polymorphic threats. \\ \hline
+3 & Competent / 90\%+ detection of known threats. Some behavioral analysis. \\ \hline
+4 & Advanced / 99\% detection. Robust behavioral blocking \& ransomware rollback. \\ \hline
+5 & World-Class / 100\% efficacy in major tests (MITRE/AV-TEST). Zero-delay blocking. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Zero-Day Detection (ID: DP-002)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Capability to identify unknown threats using advanced AI/ML and behavioral heuristics without prior signatures.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Relies entirely on known signatures/hashes. \\ \hline
+2 & Weak / High false positive rate on unknown files. Sandbox took $>$ 10 mins. \\ \hline
+3 & Moderate / Detects common unknown packers/variants. \textasciitilde{}5 min verdict. \\ \hline
+4 & Strong / AI-driven pre-execution prevention. $<$ 2 min verdict for unknowns. \\ \hline
+5 & Leading / Real-time ($<$ 30s) blocking of never-before-seen payloads via deep learning. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Phishing \& Email Security (ID: DP-003)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Integration and efficacy in detecting malicious emails, BEC, and malicious links/attachments.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / No email integration or reliance on external gateway only. \\ \hline
+2 & Basic / Static blacklisting of domains/senders. \\ \hline
+3 & Standard / NLP-based checking for body text. Attachment sandboxing. \\ \hline
+4 & Advanced / API-level inbox remediation. Computer vision for credential harvesting pages. \\ \hline
+5 & Comprehensive / Integrated user training, auto-clawback, and social graph analysis. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{False Positive Rate (ID: DP-004)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Accuracy of alerts to minimize alert fatigue.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Poor / $>$ 20\% of alerts are false positives. Unusable for automation. \\ \hline
+2 & Below Average / 10-20\% FP rate. Constant tuning required. \\ \hline
+3 & Average / 5-10\% FP rate. Manageable with a dedicated analyst. \\ \hline
+4 & Good / $<$ 5\% FP rate. High confidence in critical alerts. \\ \hline
+5 & Excellent / $<$ 1\% FP rate. Alerts are actionable by default. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Detection Latency (ID: DP-005)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Time elapsed between the malicious activity and the alert generation.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Laggy / $>$ 1 hour delay for critical alerts. \\ \hline
+2 & Slow / 15-60 minutes delay. Batch processing evident. \\ \hline
+3 & Standard / 1-15 minutes delay. Near real-time for some logs. \\ \hline
+4 & Fast / $<$ 1 minute for local events. $<$ 5 mins for cloud logs. \\ \hline
+5 & Real-time / Sub-second detection and alerting pipeline. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{MITRE ATT\&CK Mapping (ID: DP-006)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Depth and accuracy of alert mapping to MITRE TTPs.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Alerts have no framework context. \\ \hline
+2 & Superficial / Maps to high-level tactics only (e.g., 'Execution'). \\ \hline
+3 & Standard / Maps to technique IDs (T1xxx) but lacks sub-technique detail. \\ \hline
+4 & Detailed / Maps to sub-techniques. Includes prevention guidance. \\ \hline
+5 & Actionable / Dynamic mapping with coverage heatmaps and gap analysis. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Cloud Workload Protection (ID: DP-007)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Detection capabilities specific to containers, serverless, and cloud VMs.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Agent does not support cloud environments. \\ \hline
+2 & Basic / Traditional agent installed on cloud VMs only. \\ \hline
+3 & Moderate / K8s node visibility. AWS flows. \\ \hline
+4 & Advanced / DaemonSets for K8s, Fargate support, API scanning. \\ \hline
+5 & Native / Agentless scanning + Runtime protection across multi-cloud. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Ecosystem}
+\subsection{Marketplace Apps (ID: ECO-001)}
+\textbf{Weight:} 1 \\
+\textbf{Description:} Availability of third-party apps.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None. \\ \hline
+2 & Parse-only / TAs for parsing logs. \\ \hline
+3 & Standard / Dashboards and connectors. \\ \hline
+4 & Rich / Full-blown apps (e.g., Vulnerability mgmt module). \\ \hline
+5 & Thriving / Developer platform with monetization. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Forensics}
+\subsection{Forensic Capabilities (ID: FOR-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Tools for deep-dive investigation.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None. \\ \hline
+2 & Log-only / Historical log review. \\ \hline
+3 & Basic / File retrieval. \\ \hline
+4 & Advanced / Live memory analysis, MFT parsing. \\ \hline
+5 & Complete / Full remote forensics suite integrated. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Identity \& Access}
+\subsection{Identity Threat Detection (ID: IAM-001)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Capabilities to detect compromised credentials and lateral movement.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Raw AD logs only. \\ \hline
+2 & Basic / Brute force alerts. \\ \hline
+3 & Standard / Impossible travel, new location. \\ \hline
+4 & Advanced / Kerberoasting, Golden Ticket detection, LDAP pattern analysis. \\ \hline
+5 & Identity-First / Unified ITDR. Real-time MFA prompt bombing detection. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Integration \& Extensibility}
+\subsection{API Completeness (ID: IE-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Extent to which platform features are accessible via API.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Closed / No public API. \\ \hline
+2 & Limited / Read-only API or limited endpoints. \\ \hline
+3 & Standard / Most data queryable. Some configuration gaps. \\ \hline
+4 & Robust / comprehensive REST/GraphQL API for data \& config. \\ \hline
+5 & API-First / 100\% feature parity. SDKs available in Python/Go/JS. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Data Ingestion Flexibility (ID: IE-002)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Ability to parse and normalize logs from custom/diverse sources.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Rigid / Vendor-specific agents only. \\ \hline
+2 & Standard / Supports Syslog/CEF/LEEF. Hard to parse custom apps. \\ \hline
+3 & Flexible / JSON/XML parsing. Regex-based custom parsers. \\ \hline
+4 & Universal / Smart connectors, auto-schema detection, Logstash/Fluentd support. \\ \hline
+5 & Schemaless / Ingest anything. Search-time extraction. Zero parsing overhead. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Ecosystem Integrations (ID: IE-003)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Breadth of pre-built technology partner integrations.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Isolated / Proprietary stack only. \\ \hline
+2 & Minimal / $<$ 20 major vendors supported. \\ \hline
+3 & Average / 50-100 integrations (Major Cloud, FW, EDR). \\ \hline
+4 & Extensive / 300+ seamless integrations. \\ \hline
+5 & Universal / 500+ integrations + Open Collector framework. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Custom Detection Logic (ID: IE-004)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Language and flexibility for writing custom detection rules.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Vendor black-box only. \\ \hline
+2 & Basic / Simple UI builders (AND/OR logic). \\ \hline
+3 & Intermediate / Proprietary query language (e.g., KQL, SPL). \\ \hline
+4 & Advanced / SIGMA rule support, Yara support. \\ \hline
+5 & Code-Level / Python/Lua scripting for complex stateful logic. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Multi-Tenancy (ID: IE-005)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Support for MSSP/Hierarchical data separation.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Single tenant only. \\ \hline
+2 & Weak / Logical separation but shared RBAC. \\ \hline
+3 & Functional / Separate data silos, shared config. \\ \hline
+4 & Robust / Full RBAC, varied retention per tenant, cross-tenant hunting. \\ \hline
+5 & Carrier-Grade / physical separation options, white-labeling, infinite nesting. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Miscellaneous}
+\subsection{Vendor Support Quality (ID: MS-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Support SLA and technical competence.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Absent / Forum only. \\ \hline
+2 & Basic / Email tickets, 24-48hr response. \\ \hline
+3 & Standard / 24/7 Phone, tiered SLA. \\ \hline
+4 & Premium / Dedicated Technical Account Manager (TAM). \\ \hline
+5 & Partner / Engineering-level access, proactive health checks. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Threat Intelligence Quality (ID: MS-002)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Quality of the native threat intel feed.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Bring your own. \\ \hline
+2 & Open Source / Repackaged public feeds (OSINT). \\ \hline
+3 & Commercial / Standard vendor feed. \\ \hline
+4 & Premium / Top-tier unit (e.g., Unit42, Mandiant, Talos). \\ \hline
+5 & Bespoke / Industry-specific intel + dark web monitoring. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Network Security}
+\subsection{Network Traffic Analysis (NTA) (ID: NET-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Analysis of network flows and PCAP.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None. \\ \hline
+2 & Flows / NetFlow/IPFIX ingestion. \\ \hline
+3 & Metadata / L7 protocol analysis (DNS/HTTP). \\ \hline
+4 & PCAP / Full packet capture on demand. \\ \hline
+5 & Deep / Encrypted traffic analysis (JA3), automatic PCAP extraction. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Performance \& Scalability}
+\subsection{Ingestion Throughput (ID: PS-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Events Per Second (EPS) capability without lag.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Low / $<$ 1k EPS. Struggles with bursts. \\ \hline
+2 & Medium / 1k-5k EPS. Standard SMB performance. \\ \hline
+3 & High / 5k-20k EPS. Enterprise standard. \\ \hline
+4 & Very High / 20k-100k EPS. Handles high-volume log sources (DNS/Flow). \\ \hline
+5 & Hyperscale / $>$ 100k EPS. Horizontal auto-scaling. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Search Speed (Hot Data) (ID: PS-002)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Query response time for last 24 hours of data.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Slow / Minutes to return simple queries. \\ \hline
+2 & Acceptable / 10-30 seconds for standard queries. \\ \hline
+3 & Fast / $<$ 5 seconds for indexed fields. \\ \hline
+4 & Instant / Sub-second for most queries. \\ \hline
+5 & Real-time / Instant results with live-tail capabilities. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Historical Search (Cold Data) (ID: PS-003)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Ability and speed to search archived/cold logs (30d+).
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Impossible / Must re-hydrate data manually. \\ \hline
+2 & Painful / Hours to run queries over long timeframes. \\ \hline
+3 & Workable / Slower than hot, but runs in background without timeouts. \\ \hline
+4 & Seamless / Search hot \& cold transparently (Tiered storage). \\ \hline
+5 & Instant / innovative format allowing sub-second capability on years of data. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Agent Resource Footprint (ID: PS-004)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} CPU/RAM impact on endpoints.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Heavy / Noticeable slowdown ($>$ 5\% CPU). User complaints. \\ \hline
+2 & Moderate / spikes during scanning, steady otherwise. \\ \hline
+3 & Light / $<$ 2\% CPU average. $<$ 200MB RAM. \\ \hline
+4 & Very Light / $<$ 1\% CPU. $<$ 100MB RAM. \\ \hline
+5 & Invisible / Kernel-level efficiency. Negligible impact. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Scalability Architecture (ID: PS-005)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Ease of expanding capacity.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Fixed / Appliance-based hard limits. \\ \hline
+2 & Vertical / Must upgrade hardware/VM size. \\ \hline
+3 & Clustered / Add nodes manually. \\ \hline
+4 & Elastic / Auto-scaling groups (Cloud). \\ \hline
+5 & Serverless / Fully managed SaaS. No infrastructure management. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Reporting \& Compliance}
+\subsection{Compliance Reporting (ID: RC-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Coverage of standard frameworks (PCI, HIPAA, GDPR, SOC2).
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / No pre-built reports. \\ \hline
+2 & Skeletal / Generic reports requiring heavy modification. \\ \hline
+3 & Standard / PDF packs for major regulations. \\ \hline
+4 & Interactive / Drill-down compliance dashboards. \\ \hline
+5 & Continuous / Real-time GRC monitoring and mapping. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Custom Reporting Engine (ID: RC-002)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Flexibility in creating new reports.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Vendor reports only. \\ \hline
+2 & Limited / Basic filters on existing templates. \\ \hline
+3 & Visual / Drag-and-drop widget builder. \\ \hline
+4 & Code-Based / SQL/BI tool integration. \\ \hline
+5 & Limitless / Pixel-perfect embedded BI (e.g., Looker/Tableau integration). \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Data Retention Flexibility (ID: RC-003)}
+\textbf{Weight:} 1 \\
+\textbf{Description:} Options for storing logs for compliance.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Fixed / Vendor driven (e.g., 30 days max). \\ \hline
+2 & Tiered / Expensive to increase. \\ \hline
+3 & Configurable / Per-index settings. \\ \hline
+4 & Hybrid / Store locally or bring-your-own-storage (S3). \\ \hline
+5 & Unlimited / Economical long-term cold storage inclusions. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Response \& Automation}
+\subsection{SOAR / Automation Capabilities (ID: RA-001)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Native capabilities to orchestrate workflows and automate responses.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Manual / No automation. Analyst must manually perform every step. \\ \hline
+2 & Scripted / Simple 'if-this-then-that' scripts (e.g., email notification). \\ \hline
+3 & Partial / Pre-built playbooks for common tasks (e.g., block IP, isolate host). \\ \hline
+4 & Extensive / Visual playbook editor, multi-step branching logic, approval workflows. \\ \hline
+5 & Autonomous / AI-recommended actions and fully self-healing workflows for Tier 1 incidents. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Playbook Ecosystem (ID: RA-002)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Availability and quality of out-of-the-box response playbooks.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Empty / Build from scratch only. \\ \hline
+2 & Limited / $<$ 10 basic templates provided. \\ \hline
+3 & Standard / 20-50 common scenario playbooks (phishing, malware). \\ \hline
+4 & Rich / 100+ verified partner integrations and playbooks. \\ \hline
+5 & Community-Driven / Marketplace with thousands of community/vendor maintained playbooks. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Remediation Depth (ID: RA-003)}
+\textbf{Weight:} 3 \\
+\textbf{Description:} Granularity of response actions available on endpoints/assets.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Read-only visibility. \\ \hline
+2 & Coarse / Full isolation or nothing. \\ \hline
+3 & Basic / IP blocking, Process kill, Hash ban. \\ \hline
+4 & Granular / Delete file, registry edit, service restart, user disable. \\ \hline
+5 & Surgical / Live shell access, memory dump, script injection, granular firewall control. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Investigation Workbench (ID: RA-004)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Quality of the interface for analysts to triage and investigate.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & Disjointed / Multiple browser tabs needed. Raw log views only. \\ \hline
+2 & Basic / Simple aggregation of alerts. No correlation visualizer. \\ \hline
+3 & Functional / Timeline view, pivoted searches, basic correlation. \\ \hline
+4 & Streamlined / Graph view of assets/threats, integrated threat intel lookup. \\ \hline
+5 & Integrated / Unified workspace. One-click pivoting, auto-enriched artifacts, collaboration tools. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\subsection{Ticketing Integration (ID: RA-005)}
+\textbf{Weight:} 1 \\
+\textbf{Description:} Bi-directional sync with ITSM tools (Jira, ServiceNow).
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None / Copy-paste required. \\ \hline
+2 & Uni-directional / Can send emails/webhooks to open tickets. \\ \hline
+3 & Basic Sync / Opens tickets via API. No status updates back. \\ \hline
+4 & Bi-directional / Status/Comments sync both ways. \\ \hline
+5 & Native App / Deep app integration with custom fields and workflow mapping. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\section{Vulnerability Mgmt}
+\subsection{Vulnerability Context (ID: VM-001)}
+\textbf{Weight:} 2 \\
+\textbf{Description:} Integration of vuln data into incident context.
+\vspace{0.3cm}
+\begin{longtable}{|c|p{12cm}|}
+\hline
+\rowcolor{lightgray} \textbf{Level} & \textbf{Description} \\ \hline
+1 & None. \\ \hline
+2 & Siloed / Separate dashboard tab. \\ \hline
+3 & Visual / Vulnerabilities shown on asset view. \\ \hline
+4 & Correlated / Alerts prioritized by asset vulnerability status. \\ \hline
+5 & Predictive / Attack path modeling based on vulnerabilities. \\ \hline
+\end{longtable}
+\vspace{0.5cm}
+\end{document}
