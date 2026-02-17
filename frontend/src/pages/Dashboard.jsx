@@ -1,13 +1,56 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Shield, Plus, TrendingUp, Award, Activity, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
-import { Card, CardContent } from '../components/ui/card';
+import { Bar, Radar, Doughnut, Pie } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    ArcElement,
+    Title,
+    Tooltip,
+    Legend
+} from 'chart.js';
+import {
+    Shield,
+    Plus,
+    TrendingUp,
+    Zap,
+    Activity,
+    ArrowRight,
+    CheckCircle2,
+    Clock,
+    Target,
+    BarChart3,
+    Trophy,
+    LayoutDashboard,
+    ArrowUpRight,
+    PieChart,
+    Layers,
+    CreditCard
+} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
+import { Button } from '../components/ui/button';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    ArcElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 const Dashboard = () => {
     const [solutions, setSolutions] = useState([]);
@@ -31,11 +74,12 @@ const Dashboard = () => {
     }, []);
 
     if (loading) return (
-        <div className="flex items-center justify-center min-h-[60vh]">
-            <div className="text-center">
-                <Shield className="mx-auto text-primary mb-4 animate-pulse" size={56} />
-                <div className="text-muted-foreground text-lg">Loading dashboard...</div>
+        <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+            <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full animate-pulse"></div>
+                <Shield className="relative text-primary animate-bounce" size={64} />
             </div>
+            <div className="text-muted-foreground text-lg font-medium animate-pulse">Initializing Dashboard...</div>
         </div>
     );
 
@@ -48,318 +92,456 @@ const Dashboard = () => {
         ? rankings.reduce((prev, current) => (prev.overallScore > current.overallScore) ? prev : current)
         : null;
 
-    // Performance badge helper
-    const getPerformanceBadge = (score) => {
-        if (score >= 4) return { label: 'Excellent', color: '' }; // classes applied in render
-        if (score >= 3) return { label: 'Good', color: '' };
-        if (score >= 2) return { label: 'Fair', color: '' };
-        return { label: 'Needs Improvement', color: '' };
-    };
+    // --- Chart Data ---
 
-    // Bar Chart
+    // 1. Top Performers Bar Chart
     const barChartData = {
         labels: rankings.slice(0, 5).map(s => s.solutionName),
         datasets: [{
-            label: 'Score',
+            label: 'Overall Score',
             data: rankings.slice(0, 5).map(s => s.overallScore),
-            backgroundColor: rankings.slice(0, 5).map(s =>
-                s.overallScore >= 4 ? 'rgba(16, 185, 129, 0.8)' :
-                    s.overallScore >= 3 ? 'rgba(59, 130, 246, 0.8)' :
-                        'rgba(245, 158, 11, 0.8)'
-            ),
-            borderWidth: 0,
-            borderRadius: 4
+            backgroundColor: rankings.slice(0, 5).map(s => {
+                if (s.overallScore >= 4) return 'rgba(16, 185, 129, 0.7)'; // Emerald
+                if (s.overallScore >= 3) return 'rgba(59, 130, 246, 0.7)'; // Blue
+                return 'rgba(245, 158, 11, 0.7)'; // Amber
+            }),
+            borderColor: 'transparent',
+            borderRadius: 6,
+            barThickness: 30,
         }]
     };
 
-    const chartOptions = {
+    const barOptions = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: { display: false },
             tooltip: {
-                backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                titleColor: '#0f172a',
-                bodyColor: '#334155',
-                borderColor: '#e2e8f0',
-                borderWidth: 1,
+                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                titleColor: '#e2e8f0',
+                bodyColor: '#cbd5e1',
                 padding: 12,
-                titleFont: { size: 14, weight: 'bold' },
-                bodyFont: { size: 13 },
-                displayColors: false
+                cornerRadius: 8,
+                displayColors: false,
             }
         },
         scales: {
             y: {
                 beginAtZero: true,
                 max: 5,
-                grid: { color: '#e2e8f0' },
-                ticks: { color: '#64748b', font: { size: 12 } }
+                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                ticks: { color: '#64748b', font: { size: 10 } }
             },
             x: {
                 grid: { display: false },
-                ticks: { color: '#64748b', font: { size: 12 } }
+                ticks: { color: '#64748b', font: { size: 11, weight: 500 } }
+            }
+        }
+    };
+
+    // 2. Market Score Range (Floating Bar)
+    // Calculate min/max for each category
+    const categoryLabels = comparison?.categoryAverages ? Object.keys(comparison.categoryAverages) : [];
+    const categoryValues = comparison?.categoryAverages ? Object.values(comparison.categoryAverages) : [];
+
+    const rangeDataPoints = categoryLabels.map((cat, i) => {
+        let min = 10;
+        let max = 0;
+        rankings.forEach(sol => {
+            const score = sol.categoryScores.find(c => c.category === cat)?.score || 0;
+            if (score < min) min = score;
+            if (score > max) max = score;
+        });
+        return {
+            category: cat,
+            min,
+            max,
+            avg: categoryValues[i] // Use pre-calculated avg for sorting if needed
+        };
+    }).sort((a, b) => b.avg - a.avg);
+
+    const rangeChartData = {
+        labels: rangeDataPoints.map(d => d.category),
+        datasets: [{
+            label: 'Score Range',
+            data: rangeDataPoints.map(d => [d.min, d.max]), // Floating bars [min, max]
+            backgroundColor: 'rgba(59, 130, 246, 0.5)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 1,
+            barPercentage: 0.6,
+            borderRadius: 4,
+            borderSkipped: false,
+        }]
+    };
+
+    const rangeChartOptions = {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: function (ctx) {
+                        const val = ctx.raw;
+                        return ` Range: ${val[0]} - ${val[1]}`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                min: 0,
+                max: 10,
+                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            },
+            y: {
+                grid: { display: false },
             }
         }
     };
 
     return (
-        <div className="max-w-[1600px] mx-auto pb-20 animate-in fade-in duration-500">
-            {/* Header */}
-            <div className="flex justify-between items-start mb-10">
+        <div className="max-w-[1600px] mx-auto pb-20 fade-in animate-in duration-500">
+            {/* Header Flex */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-4xl font-black text-foreground mb-3 tracking-tight">Dashboard</h1>
-                    <p className="text-muted-foreground text-lg">SOC solution benchmarking overview and insights</p>
+                    <h1 className="text-3xl font-black text-foreground flex items-center gap-3">
+                        <LayoutDashboard className="text-primary" />
+                        Dashboard
+                    </h1>
+                    <p className="text-muted-foreground mt-1">Real-time benchmarking intelligence.</p>
                 </div>
-                <Link to="/solution" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 gap-2 shadow-sm">
-                    <Plus size={18} />
-                    New Solution
-                </Link>
+                <div className="flex gap-3">
+                    <Button variant="outline" asChild>
+                        <Link to="/compare">
+                            <BarChart3 className="mr-2 h-4 w-4" /> View Full Report
+                        </Link>
+                    </Button>
+                    <Button asChild>
+                        <Link to="/solution">
+                            <Plus className="mr-2 h-4 w-4" /> New Assessment
+                        </Link>
+                    </Button>
+                </div>
             </div>
 
-            {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                {/* Total Solutions */}
-                <Card className="hover:shadow-md transition-all">
+            {/* KPI Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background border-blue-100 dark:border-blue-900/50">
                     <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-xl">
-                                <Shield size={24} className="text-blue-600 dark:text-blue-400" />
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Total Solutions</p>
+                                <h3 className="text-3xl font-black text-foreground mt-2">{solutions.length}</h3>
                             </div>
-                            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Total</span>
-                        </div>
-                        <div className="text-4xl font-black text-foreground mb-1">{solutions.length}</div>
-                        <div className="text-sm text-blue-600 dark:text-blue-400 font-medium">Solutions Assessed</div>
-                    </CardContent>
-                </Card>
-
-                {/* Average Score */}
-                <Card className="hover:shadow-md transition-all">
-                    <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-emerald-100 dark:bg-emerald-900/20 rounded-xl">
-                                <TrendingUp size={24} className="text-emerald-600 dark:text-emerald-400" />
+                            <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400">
+                                <Shield size={20} />
                             </div>
-                            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Average</span>
                         </div>
-                        <div className="text-4xl font-black text-foreground mb-1">{avgScore}</div>
-                        <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Market Average Score</div>
-                    </CardContent>
-                </Card>
-
-                {/* Top Performer */}
-                <Card className="hover:shadow-md transition-all">
-                    <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-amber-100 dark:bg-amber-900/20 rounded-xl">
-                                <Award size={24} className="text-amber-600 dark:text-amber-400" />
-                            </div>
-                            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Leader</span>
-                        </div>
-                        <div className="text-xl font-bold text-foreground mb-1 truncate" title={topPerformer?.solutionName || 'N/A'}>
-                            {topPerformer?.solutionName || 'No data'}
-                        </div>
-                        <div className="text-sm text-amber-600 dark:text-amber-400 font-medium">
-                            Score: <span className="font-mono font-bold">{topPerformer?.overallScore?.toFixed(1) || '-'}</span>
+                        <div className="mt-4 text-xs text-muted-foreground flex items-center gap-1">
+                            <Activity size={12} />
+                            <span>{rankings.length} evaluated</span>
                         </div>
                     </CardContent>
                 </Card>
 
-                {/* Categories */}
-                <Card className="hover:shadow-md transition-all">
+                <Card className="bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/20 dark:to-background border-emerald-100 dark:border-emerald-900/50">
                     <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-xl">
-                                <Activity size={24} className="text-purple-600 dark:text-purple-400" />
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Avg Market Score</p>
+                                <h3 className="text-3xl font-black text-foreground mt-2">{avgScore}</h3>
                             </div>
-                            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Criteria</span>
+                            <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg text-emerald-600 dark:text-emerald-400">
+                                <TrendingUp size={20} />
+                            </div>
                         </div>
-                        <div className="text-4xl font-black text-foreground mb-1">
-                            {comparison?.categoryAverages ? Object.keys(comparison.categoryAverages).length : '-'}
+                        <div className="mt-4 text-xs text-muted-foreground flex items-center gap-1">
+                            <Zap size={12} className="text-amber-500" />
+                            <span>out of 5.0 scale</span>
                         </div>
-                        <div className="text-sm text-purple-600 dark:text-purple-400 font-medium">Assessment Categories</div>
                     </CardContent>
                 </Card>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-                {/* Top 5 Chart */}
-                <div className="lg:col-span-7">
-                    <h2 className="text-2xl font-bold text-foreground mb-6">Top Ranked Solutions</h2>
-                    <Card className="shadow-sm">
-                        <CardContent className="p-8">
-                            <div className="h-[350px]">
-                                {rankings.length > 0 ? (
-                                    <Bar data={barChartData} options={chartOptions} />
-                                ) : (
-                                    <div className="flex items-center justify-center h-full text-muted-foreground">
-                                        No assessment data available
+                <Card className="bg-gradient-to-br from-amber-50 to-white dark:from-amber-950/20 dark:to-background border-amber-100 dark:border-amber-900/50 lg:col-span-2">
+                    <CardContent className="p-6">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-amber-600 dark:text-amber-400">Current Leader</p>
+                                <h3 className="text-2xl font-black text-foreground mt-1 truncate max-w-[200px] md:max-w-none">
+                                    {topPerformer ? topPerformer.solutionName : 'No Data'}
+                                </h3>
+                                {topPerformer && (
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 pointer-events-none">
+                                            Score: {topPerformer.overallScore.toFixed(2)}
+                                        </Badge>
+                                        <span className="text-xs text-muted-foreground">
+                                            {topPerformer.vendor}
+                                        </span>
                                     </div>
                                 )}
                             </div>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                {/* Quick Stats */}
-                <div className="lg:col-span-5">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-2xl font-bold text-foreground">Rankings</h2>
-                        <Link to="/compare" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
-                            View All <ArrowRight size={14} />
-                        </Link>
-                    </div>
-                    <div className="space-y-3">
-                        {rankings.slice(0, 5).map((sol, idx) => {
-                            const perf = getPerformanceBadge(sol.overallScore);
-                            // Adjusting badge styles for light theme
-                            let badgeClass = "text-[10px] mt-1 border ";
-                            if (sol.overallScore >= 4) badgeClass += "bg-emerald-100 text-emerald-700 border-emerald-200";
-                            else if (sol.overallScore >= 3) badgeClass += "bg-blue-100 text-blue-700 border-blue-200";
-                            else if (sol.overallScore >= 2) badgeClass += "bg-amber-100 text-amber-700 border-amber-200";
-                            else badgeClass += "bg-red-100 text-red-700 border-red-200";
-
-                            return (
-                                <Card key={idx} className="hover:shadow-md transition-all">
-                                    <CardContent className="p-5">
-                                        <div className="flex items-center gap-4">
-                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${idx === 0 ? 'bg-amber-100 text-amber-700' :
-                                                    idx === 1 ? 'bg-slate-100 text-slate-600' :
-                                                        idx === 2 ? 'bg-orange-100 text-orange-700' :
-                                                            'bg-slate-50 text-slate-400'
-                                                }`}>
-                                                #{idx + 1}
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="font-semibold text-foreground truncate">{sol.solutionName}</div>
-                                                <div className="text-xs text-muted-foreground mt-0.5">{sol.metrics?.deploymentType || 'N/A'}</div>
-                                            </div>
-                                            <div className="text-right flex-shrink-0">
-                                                <div className="text-xl font-black text-foreground">{sol.overallScore.toFixed(1)}</div>
-                                                <Badge variant="outline" className={badgeClass}>
-                                                    {perf.label}
-                                                </Badge>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            );
-                        })}
-                        {rankings.length === 0 && (
-                            <Card>
-                                <CardContent className="p-8 text-center">
-                                    <Activity className="mx-auto text-muted-foreground mb-3" size={32} />
-                                    <div className="text-muted-foreground mb-4">No solutions ranked yet</div>
-                                    <Link to="/solution" className="text-primary hover:text-primary/80 text-sm font-medium">
-                                        Add your first solution →
-                                    </Link>
-                                </CardContent>
-                            </Card>
-                        )}
-                    </div>
-                </div>
+                            <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg text-amber-600 dark:text-amber-400">
+                                <Trophy size={20} />
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
 
-            {/* All Solutions Grid */}
-            <div>
-                <h2 className="text-2xl font-bold text-foreground mb-6">All Solutions</h2>
-                {solutions.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {solutions.map(sol => {
-                            const ranking = rankings.find(r => r.solutionId === sol.id);
-                            const hasAssessment = !!ranking;
-                            const perf = ranking ? getPerformanceBadge(ranking.overallScore) : null;
+            {/* Main Content Grid (Bento) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
 
-                            let badgeClass = "text-[10px] ";
-                            if (perf) {
-                                if (ranking.overallScore >= 4) badgeClass += "bg-emerald-100 text-emerald-700 border-emerald-200";
-                                else if (ranking.overallScore >= 3) badgeClass += "bg-blue-100 text-blue-700 border-blue-200";
-                                else if (ranking.overallScore >= 2) badgeClass += "bg-amber-100 text-amber-700 border-amber-200";
-                                else badgeClass += "bg-red-100 text-red-700 border-red-200";
-                            }
+                {/* 1. Top Performers Chart (Span 2) */}
+                <Card className="lg:col-span-2 flex flex-col">
+                    <CardHeader>
+                        <CardTitle className="text-lg">Top Performers</CardTitle>
+                        <CardDescription>Highest scoring solutions by overall weighted score</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 min-h-[300px]">
+                        {rankings.length > 0 ? (
+                            <Bar data={barChartData} options={barOptions} />
+                        ) : (
+                            <div className="h-full flex items-center justify-center text-muted-foreground">No data available</div>
+                        )}
+                    </CardContent>
+                </Card>
 
-                            return (
-                                <Card key={sol.id} className="group hover:shadow-lg transition-all duration-300">
-                                    <CardContent className="p-6">
-                                        <div className="flex justify-between items-start mb-4">
-                                            <div className="flex-1 min-w-0">
-                                                <h3 className="font-bold text-lg text-foreground mb-1 truncate group-hover:text-primary transition-colors">
-                                                    {sol.name}
-                                                </h3>
-                                                <div className="flex items-center gap-2 flex-wrap">
-                                                    <span className="text-xs text-muted-foreground">{sol.vendor}</span>
-                                                    <span className="text-xs text-muted-foreground">•</span>
-                                                    <Badge variant="outline" className="text-[10px] h-5 border-slate-200 text-slate-600">
-                                                        {sol.deploymentModel}
-                                                    </Badge>
-                                                </div>
-                                            </div>
-                                            {hasAssessment ? (
-                                                <div className="flex flex-col items-end gap-1">
-                                                    <div className="text-2xl font-black text-emerald-600">
-                                                        {ranking.overallScore.toFixed(1)}
-                                                    </div>
-                                                    <Badge variant="outline" className={badgeClass}>
-                                                        {perf.label}
-                                                    </Badge>
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center gap-1 text-muted-foreground">
-                                                    <Clock size={14} />
-                                                    <span className="text-xs">Pending</span>
-                                                </div>
-                                            )}
+                {/* 2. Market Score Range (Span 1) */}
+                <Card className="flex flex-col">
+                    <CardHeader>
+                        <CardTitle className="text-lg">Market Score Range</CardTitle>
+                        <CardDescription>Min-Max score spread by category</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 min-h-[300px] flex items-center justify-center">
+                        {rankings.length > 0 ? (
+                            <div className="w-full h-full max-h-[300px]">
+                                <Bar data={rangeChartData} options={rangeChartOptions} />
+                            </div>
+                        ) : (
+                            <div className="h-full flex items-center justify-center text-muted-foreground">No data available</div>
+                        )}
+                    </CardContent>
+                </Card>
+            </div>
+
+            {/* Critical Market Structure Charts */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+                {/* 1. Deployment Distribution (Doughnut) */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                            <Layers className="text-blue-500" size={18} />
+                            Deployment Models
+                        </CardTitle>
+                        <CardDescription>Infrastructure preference</CardDescription>
+                    </CardHeader>
+                    <CardContent className="min-h-[250px] flex items-center justify-center p-4">
+                        {solutions.length > 0 ? (
+                            <div className="w-full h-[200px]">
+                                <Doughnut
+                                    data={{
+                                        labels: ['SaaS', 'Hybrid', 'On-Prem'],
+                                        datasets: [{
+                                            data: [
+                                                solutions.filter(s => s.deploymentModel === 'SaaS').length,
+                                                solutions.filter(s => s.deploymentModel === 'Hybrid').length,
+                                                solutions.filter(s => s.deploymentModel === 'On-Prem').length
+                                            ],
+                                            backgroundColor: ['#3b82f6', '#8b5cf6', '#64748b'],
+                                            borderWidth: 0
+                                        }]
+                                    }}
+                                    options={{
+                                        maintainAspectRatio: false,
+                                        plugins: { legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true } } }
+                                    }}
+                                />
+                            </div>
+                        ) : <div className="text-muted-foreground">No data</div>}
+                    </CardContent>
+                </Card>
+
+                {/* 2. Solution Types (Horizontal Bar) */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                            <PieChart className="text-emerald-500" size={18} />
+                            Solution Types
+                        </CardTitle>
+                        <CardDescription>Market classification</CardDescription>
+                    </CardHeader>
+                    <CardContent className="min-h-[250px] flex items-center justify-center p-4">
+                        {solutions.length > 0 ? (
+                            <div className="w-full h-[200px]">
+                                <Bar
+                                    data={{
+                                        labels: ['SIEM', 'SOC Platform', 'Log Mgmt', 'Other'],
+                                        datasets: [{
+                                            label: 'Count',
+                                            data: [
+                                                solutions.filter(s => s.methodType?.includes('SIEM')).length,
+                                                solutions.filter(s => s.methodType?.includes('Platform')).length,
+                                                solutions.filter(s => s.methodType?.includes('Log')).length,
+                                                solutions.filter(s => !s.methodType?.match(/SIEM|Platform|Log/)).length
+                                            ],
+                                            backgroundColor: ['#10b981', '#f59e0b', '#ec4899', '#94a3b8'],
+                                            borderRadius: 4
+                                        }]
+                                    }}
+                                    options={{
+                                        indexAxis: 'y',
+                                        maintainAspectRatio: false,
+                                        plugins: { legend: { display: false } },
+                                        scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
+                                    }}
+                                />
+                            </div>
+                        ) : <div className="text-muted-foreground">No data</div>}
+                    </CardContent>
+                </Card>
+
+                {/* 3. Licensing Models (Pie) */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                            <CreditCard className="text-purple-500" size={18} />
+                            Licensing Models
+                        </CardTitle>
+                        <CardDescription>Cost structure breakdown</CardDescription>
+                    </CardHeader>
+                    <CardContent className="min-h-[250px] flex items-center justify-center p-4">
+                        {solutions.length > 0 ? (
+                            <div className="w-full h-[200px]">
+                                <Pie
+                                    data={{
+                                        labels: ['Ingest', 'Endpoint', 'User', 'Other'],
+                                        datasets: [{
+                                            data: [
+                                                solutions.filter(s => s.licenseInfo?.includes('Ingest')).length,
+                                                solutions.filter(s => s.licenseInfo?.includes('Endpoint')).length,
+                                                solutions.filter(s => s.licenseInfo?.includes('User') || s.licenseInfo?.includes('Employee')).length,
+                                                solutions.filter(s => !s.licenseInfo?.match(/Ingest|Endpoint|User|Employee/)).length
+                                            ],
+                                            backgroundColor: ['#6366f1', '#f43f5e', '#14b8a6', '#94a3b8'],
+                                            borderWidth: 0
+                                        }]
+                                    }}
+                                    options={{
+                                        maintainAspectRatio: false,
+                                        plugins: { legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true } } }
+                                    }}
+                                />
+                            </div>
+                        ) : <div className="text-muted-foreground">No data</div>}
+                    </CardContent>
+                </Card>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                {/* 3. Recent Activity / Feed */}
+                <Card className="lg:col-span-1 h-fit">
+                    <CardHeader>
+                        <CardTitle className="text-lg">Recent Solutions</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                        <div className="divide-y divide-border">
+                            {solutions.slice(-5).reverse().map((sol, i) => (
+                                <div key={sol.id} className="p-4 hover:bg-muted/50 transition-colors flex items-center justify-between group">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                                            {sol.name.substring(0, 2).toUpperCase()}
                                         </div>
-
-                                        <div className="space-y-2 mb-5 text-sm">
-                                            {hasAssessment && ranking.metrics && (
-                                                <>
-                                                    <div className="flex justify-between">
-                                                        <span className="text-muted-foreground">MITRE Coverage</span>
-                                                        <span className="text-foreground font-mono">{ranking.metrics.mitreCoverage || 'N/A'}</span>
-                                                    </div>
-                                                    <div className="flex justify-between">
-                                                        <span className="text-muted-foreground">Method</span>
-                                                        <span className="text-foreground">{sol.methodType || 'N/A'}</span>
-                                                    </div>
-                                                </>
-                                            )}
+                                        <div>
+                                            <div className="font-medium text-sm">{sol.name}</div>
+                                            <div className="text-xs text-muted-foreground">{new Date(sol.createdAt).toLocaleDateString()}</div>
                                         </div>
+                                    </div>
+                                    <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 h-8 w-8" asChild>
+                                        <Link to={`/assess/${sol.id}`}><ArrowRight size={14} /></Link>
+                                    </Button>
+                                </div>
+                            ))}
+                            {solutions.length === 0 && (
+                                <div className="p-6 text-center text-muted-foreground text-sm">No recent activity</div>
+                            )}
+                        </div>
+                    </CardContent>
+                </Card>
 
-                                        <Link
-                                            to={`/assess/${sol.id}`}
-                                            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 w-full gap-2"
-                                        >
-                                            {hasAssessment ? (
-                                                <>
-                                                    <CheckCircle2 size={16} />
-                                                    Review Assessment
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Activity size={16} />
-                                                    Start Assessment
-                                                </>
-                                            )}
-                                        </Link>
-                                    </CardContent>
-                                </Card>
-                            );
-                        })}
+                {/* 4. Detailed Leaderboard */}
+                <div className="lg:col-span-2 space-y-4">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-xl font-bold">Leaderboard</h2>
+                        <Button variant="link" size="sm" asChild>
+                            <Link to="/compare">View Detailed Comparison</Link>
+                        </Button>
                     </div>
-                ) : (
-                    <Card>
-                        <CardContent className="p-12 text-center">
-                            <Shield className="mx-auto text-muted-foreground mb-4" size={48} />
-                            <h3 className="text-xl font-bold text-foreground mb-2">No Solutions Yet</h3>
-                            <p className="text-muted-foreground mb-6">Get started by adding your first security solution to benchmark.</p>
-                            <Link to="/solution" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 gap-2">
-                                <Plus size={20} />
-                                Add Solution
-                            </Link>
-                        </CardContent>
-                    </Card>
-                )}
+
+                    <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm text-left">
+                                <thead className="bg-muted/50 border-b border-border text-muted-foreground font-medium">
+                                    <tr>
+                                        <th className="px-6 py-4 w-[60px] text-center">Rank</th>
+                                        <th className="px-6 py-4">Solution</th>
+                                        <th className="px-6 py-4">Deployment</th>
+                                        <th className="px-6 py-4 text-center">Score</th>
+                                        <th className="px-6 py-4 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-border">
+                                    {rankings.slice(0, 5).map((sol, idx) => (
+                                        <tr key={sol.solutionId} className="hover:bg-muted/30 transition-colors">
+                                            <td className="px-6 py-4 text-center">
+                                                <div className={`
+                                                    inline-flex cursor-default items-center justify-center w-6 h-6 rounded-full text-xs font-bold
+                                                    ${idx === 0 ? 'bg-amber-100 text-amber-700' :
+                                                        idx === 1 ? 'bg-slate-100 text-slate-700' :
+                                                            idx === 2 ? 'bg-orange-100 text-orange-700' : 'text-muted-foreground'}
+                                                `}>
+                                                    {idx + 1}
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 font-medium">
+                                                {sol.solutionName}
+                                                <div className="text-xs text-muted-foreground font-normal">{sol.vendor}</div>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <Badge variant="outline" className="font-normal text-xs">
+                                                    {sol.metrics?.deploymentType || 'N/A'}
+                                                </Badge>
+                                            </td>
+                                            <td className="px-6 py-4 text-center">
+                                                <span className={`font-bold ${sol.overallScore >= 4 ? 'text-emerald-600' :
+                                                    sol.overallScore >= 3 ? 'text-blue-600' : 'text-amber-600'
+                                                    }`}>
+                                                    {sol.overallScore.toFixed(2)}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4 text-right">
+                                                <Button variant="outline" size="sm" className="h-7 text-xs" asChild>
+                                                    <Link to={`/assess/${sol.solutionId}`}>View</Link>
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {rankings.length === 0 && (
+                                        <tr>
+                                            <td colSpan="5" className="px-6 py-8 text-center text-muted-foreground">
+                                                No rankings available yet. Start an assessment.
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

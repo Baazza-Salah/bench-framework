@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, PlusCircle, BarChart2, Shield, Settings, Swords } from 'lucide-react';
+import { Home, PlusCircle, BarChart2, Shield, Settings, Swords, BookOpen, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
 const Layout = ({ children }) => {
     const location = useLocation();
+    const { darkMode, setDarkMode } = useTheme();
 
     const NavItem = ({ to, icon: Icon, label }) => {
         const isActive = location.pathname === to;
@@ -34,7 +36,6 @@ const Layout = ({ children }) => {
                             SOC<span className="text-primary">Bench</span>
                         </h1>
                     </div>
-                    <p className="text-xs text-muted-foreground font-mono ml-14">v2.0.0-beta</p>
                 </div>
 
                 <nav className="flex-1 px-4 overflow-y-auto">
@@ -44,6 +45,9 @@ const Layout = ({ children }) => {
                     <NavItem to="/criteria" icon={Settings} label="Manage Criteria" />
                     <NavItem to="/compare" icon={BarChart2} label="Comparison" />
                     <NavItem to="/battle" icon={Swords} label="Battle Mode" />
+
+                    <div className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 mt-6">Resources</div>
+                    <NavItem to="/about" icon={BookOpen} label="Methodology" />
                 </nav>
 
                 <div className="mt-auto pt-6 border-t border-border">
@@ -57,6 +61,17 @@ const Layout = ({ children }) => {
                     </div>
                 </div>
             </aside>
+
+            {/* Theme Toggle Wrapper (Optional: could be in sidebar or header, placing in Sidebar for now) */}
+            <div className="fixed bottom-6 left-[210px] z-[60]">
+                <button
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="p-2 rounded-full bg-card border border-border shadow-md hover:bg-secondary text-foreground transition-colors"
+                    title="Toggle Theme"
+                >
+                    {darkMode ? <Sun size={18} className="text-amber-500" /> : <Moon size={18} className="text-indigo-500" />}
+                </button>
+            </div>
 
             {/* Main Content */}
             <main className="flex-1 ml-[280px] p-8 lg:p-12 relative overflow-x-hidden bg-background">

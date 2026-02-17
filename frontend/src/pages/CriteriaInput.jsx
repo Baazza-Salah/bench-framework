@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useData } from '../context/DataContext';
-import { Save, AlertCircle, CheckCircle, ChevronRight, HelpCircle } from 'lucide-react';
+import { Save, CheckCircle2, ChevronRight, HelpCircle, AlertCircle, LayoutDashboard, Target } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
+import { Button } from '../components/ui/button';
+
+// SCORE_LABELS removed as per user request for simpler UI
 
 const CriteriaInput = () => {
     const { id } = useParams();
@@ -12,6 +15,7 @@ const CriteriaInput = () => {
     const { solutions, criteria } = useData();
     const [scores, setScores] = useState({});
     const [activeCategory, setActiveCategory] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
 
     const categories = [...new Set(criteria.map(c => c.category))];
 
@@ -25,15 +29,13 @@ const CriteriaInput = () => {
         const fetchExistingScores = async () => {
             try {
                 const res = await axios.get(`/api/scores/${id}`);
-                if (res.data && res.data.length > 0) {
-                    const latest = res.data[res.data.length - 1];
-                    if (latest && latest.items) {
-                        const scoreMap = {};
-                        latest.items.forEach(item => {
-                            scoreMap[item.criterionId] = item;
-                        });
-                        setScores(scoreMap);
-                    }
+                // API returns array of score items directly: [ { criterionId, score... }, ... ]
+                if (res.data && Array.isArray(res.data)) {
+                    const scoreMap = {};
+                    res.data.forEach(item => {
+                        scoreMap[item.criterionId] = item;
+                    });
+                    setScores(scoreMap);
                 }
             } catch (err) {
                 console.log("No existing scores found or error fetching.");
@@ -57,15 +59,20 @@ const CriteriaInput = () => {
         const items = Object.values(scores);
         if (items.length === 0) return;
 
+        setIsSaving(true);
         try {
             await axios.post('/api/scores', {
                 solutionId: id,
                 items
             });
-            alert('Scores saved successfully!');
-            navigate('/compare');
+            // Simulate brief delay for feedback
+            setTimeout(() => {
+                setIsSaving(false);
+                navigate('/compare');
+            }, 500);
         } catch (error) {
             console.error(error);
+            setIsSaving(false);
             alert('Failed to save scores.');
         }
     };
@@ -84,7 +91,7 @@ const CriteriaInput = () => {
     const renderRubricTooltip = (c) => {
         if (!c.rubric) return null;
         return (
-            <div className="absolute z-50 left-0 bottom-full mb-2 w-[400px] bg-popover border border-border rounded-xl p-4 shadow-xl opacity-0 group-hover/rubric:opacity-100 pointer-events-none transition-opacity text-xs">
+            <div className="absolute z-50 left-0 bottom-full mb-2 w-[400px] bg-popover border border-border rounded-xl p-4 shadow-xl opacity-0 group-hover/rubric:opacity-100 pointer-events-none transition-all duration-200 text-xs translate-y-2 group-hover/rubric:translate-y-0">
                 <div className="font-bold text-foreground mb-2 border-b border-border pb-1">SCORING GUIDE</div>
                 <div className="space-y-2">
                     {[1, 2, 3, 4, 5].map(lvl => (
@@ -103,152 +110,182 @@ const CriteriaInput = () => {
     return (
         <div className="max-w-[1600px] mx-auto pb-20 animate-in fade-in duration-500">
             {/* Header */}
-            <div className="flex justify-between items-end mb-8 border-b border-border pb-6">
+            <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-8 border-b border-border pb-6">
                 <div>
-                    <div className="flex items-center gap-2 text-primary mb-2">
-                        <span className="text-sm font-semibold tracking-wider uppercase">Assessment</span>
-                        <ChevronRight size={16} />
-                        <span className="text-sm font-semibold tracking-wider uppercase text-foreground">{solution.name}</span>
+                    <div className="flex items-center gap-2 text-muted-foreground mb-2 text-sm">
+                        <Link to="/" className="hover:text-foreground transition-colors">Dashboard</Link>
+                        <ChevronRight size={14} />
+                        <span className="text-foreground font-medium">{solution.name}</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-foreground mb-2">Evaluate Solution</h1>
-                    <p className="text-muted-foreground">Complete the benchmarking criteria below.</p>
+                    <h1 className="text-3xl font-bold text-foreground tracking-tight">Evaluate Solution</h1>
                 </div>
 
-                <div className="flex items-center gap-6">
-                    <div className="text-right">
-                        <div className="text-sm text-muted-foreground mb-1">Progress</div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-32 h-2 bg-secondary rounded-full overflow-hidden">
-                                <div className="h-full bg-primary transition-all duration-500" style={{ width: `${getProgress()}%` }} />
-                            </div>
-                            <span className="font-mono text-foreground">{getProgress()}%</span>
+                <div className="flex flex-col items-end gap-2">
+                    <div className="flex items-center gap-3 text-sm">
+                        <span className="text-muted-foreground font-medium">Progress</span>
+                        <div className="w-32 h-2.5 bg-secondary rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-primary transition-all duration-500"
+                                style={{ width: `${getProgress()}%` }}
+                            />
                         </div>
+                        <span className="font-bold text-foreground w-8 text-right">{getProgress()}%</span>
                     </div>
-                    <button
+                    <Button
                         onClick={handleSave}
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl shadow-sm flex items-center gap-2 font-semibold transition-all hover:-translate-y-0.5"
+                        disabled={isSaving}
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground h-10 px-6 rounded-lg font-medium"
                     >
-                        <Save size={20} />
-                        Save Assessment
-                    </button>
+                        {isSaving ? 'Saving...' : 'Save Assessment'}
+                    </Button>
                 </div>
             </div>
 
-            <div className="flex gap-8 items-start">
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+
                 {/* Sidebar Categories */}
-                <div className="w-[280px] shrink-0 sticky top-8">
-                    <Card className="bg-card border border-border rounded-2xl p-4 space-y-1 shadow-sm">
-                        <div className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Categories</div>
-                        {categories.map(cat => (
-                            <button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
-                                className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${activeCategory === cat
-                                    ? 'bg-primary text-primary-foreground shadow-md font-medium'
-                                    : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
-                                    }`}
-                            >
-                                <span>{cat}</span>
-                                {activeCategory === cat && <ChevronRight size={16} />}
-                            </button>
-                        ))}
-                    </Card>
+                <div className="w-full lg:w-[260px] shrink-0 sticky top-4">
+                    <div className="space-y-1">
+                        <div className="px-3 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">
+                            Categories
+                        </div>
+                        {categories.map(cat => {
+                            const isActive = activeCategory === cat;
+                            const count = criteria.filter(c => c.category === cat).length;
+                            const answered = criteria.filter(c => c.category === cat && scores[c.id]).length;
+
+                            return (
+                                <button
+                                    key={cat}
+                                    onClick={() => setActiveCategory(cat)}
+                                    className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors flex items-center justify-between ${isActive
+                                        ? 'bg-primary text-primary-foreground font-medium'
+                                        : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                                        }`}
+                                >
+                                    <span>{cat}</span>
+                                    {answered === count && <CheckCircle2 size={14} className={isActive ? "text-primary-foreground/70" : "text-emerald-500"} />}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex-1 space-y-6">
-                    {criteria.filter(c => c.category === activeCategory).map(c => (
-                        <div key={c.id} className="group bg-card border border-border hover:border-primary/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-lg">
-                            <div className="flex justify-between items-start mb-4">
-                                <div>
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{c.name}</h3>
-                                        <Badge variant={c.weight >= 4 ? "default" : "outline"} className="text-[10px]">
-                                            W{c.weight}
-                                        </Badge>
+                {/* Content Area */}
+                <div className="flex-1 space-y-4 min-w-0">
+                    {criteria.filter(c => c.category === activeCategory).map(c => {
+                        const score = scores[c.id]?.score || 0;
+
+                        return (
+                            <div key={c.id} className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition-colors">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <h3 className="font-semibold text-foreground text-lg">{c.name}</h3>
+                                            <Badge variant="outline" className="text-[10px] font-normal">
+                                                Weight: {c.weight}
+                                            </Badge>
+                                        </div>
+                                        <p className="text-muted-foreground text-sm max-w-2xl">{c.description}</p>
                                     </div>
-                                    <p className="text-muted-foreground text-sm leading-relaxed max-w-2xl">{c.description}</p>
+                                    {/* 
+                                     * Removed score labels (5/5, Excellent) per user request 
+                                     * Keeping layout structure balanced 
+                                     */}
+                                    <div className="text-right">
+                                        {/* Empty or minimal indicator if needed, currently requested to be removed */}
+                                    </div>
                                 </div>
-                                {scores[c.id]?.score && (
-                                    <CheckCircle className="text-emerald-500" size={24} />
-                                )}
-                            </div>
 
-                            <div className="grid grid-cols-12 gap-6 items-start">
-                                <div className="col-span-12 md:col-span-4 relative group/rubric">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                                            Score (1-5)
-                                        </label>
-                                        <HelpCircle size={14} className="text-muted-foreground cursor-help" />
-                                    </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                                    {/* Slider */}
+                                    <div>
+                                        <div className="flex justify-between items-end mb-3">
+                                            <label className="text-xs font-medium text-muted-foreground uppercase">
+                                                Score
+                                            </label>
+                                            <span className="text-sm font-bold text-primary font-mono">{score}/5</span>
+                                        </div>
 
-                                    {/* Tooltip */}
-                                    {renderRubricTooltip(c)}
+                                        <div className="relative h-6 flex items-center select-none group/slider">
+                                            {/* Track Background */}
+                                            <div className="absolute w-full h-2 bg-secondary rounded-full overflow-hidden">
+                                                <div
+                                                    className="h-full bg-gradient-to-r from-red-500 via-amber-400 to-emerald-500 opacity-90 transition-all duration-150"
+                                                    style={{ width: `${(score / 5) * 100}%` }}
+                                                />
+                                            </div>
 
-                                    <div className="relative">
-                                        <input
-                                            type="range"
-                                            min="1" max="5"
-                                            step="1"
-                                            className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-primary"
-                                            value={scores[c.id]?.score || 3}
-                                            onChange={e => handleScoreChange(c.id, 'score', parseInt(e.target.value))}
-                                        />
-                                        <div className="mt-2 flex justify-between text-xs text-muted-foreground font-mono">
-                                            <span>1</span>
-                                            <span>2</span>
-                                            <span>3</span>
-                                            <span>4</span>
-                                            <span>5</span>
+                                            {/* Tick Marks */}
+                                            <div className="absolute w-full flex justify-between px-1 pointer-events-none">
+                                                {[0, 1, 2, 3, 4, 5].map(val => (
+                                                    <div key={val} className={`w-1 h-1 rounded-full transition-colors z-10 ${val <= score ? 'bg-white shadow-sm' : 'bg-muted-foreground/30'}`} />
+                                                ))}
+                                            </div>
+
+                                            {/* Thumb (Visual) */}
+                                            <div
+                                                className="absolute w-5 h-5 bg-background border-2 border-primary rounded-full shadow-md transition-all duration-75 pointer-events-none flex items-center justify-center z-20 group-hover/slider:scale-110"
+                                                style={{ left: `calc(${score * 20}% - 10px)` }}
+                                            >
+                                                <div className={`w-1.5 h-1.5 rounded-full ${score > 0 ? 'bg-primary' : 'bg-muted'}`} />
+                                            </div>
+
+                                            {/* Actual Input (Invisible Overlay) */}
+                                            <input
+                                                type="range"
+                                                min="0" max="5"
+                                                step="1"
+                                                className="absolute w-full h-full opacity-0 cursor-pointer z-30"
+                                                value={score}
+                                                onChange={e => handleScoreChange(c.id, 'score', parseInt(e.target.value))}
+                                            />
+                                        </div>
+
+                                        <div className="flex justify-between text-[10px] text-muted-foreground mt-1 px-1 font-medium">
+                                            <span>Poor</span>
+                                            <span>Excellent</span>
                                         </div>
                                     </div>
-                                    <div className="mt-2 text-center pointer-events-none">
-                                        <span className={`inline-block px-4 py-1 rounded-lg font-mono font-bold text-lg 
-                                            ${(scores[c.id]?.score || 0) >= 4 ? 'bg-emerald-100 text-emerald-600' :
-                                                (scores[c.id]?.score || 0) >= 3 ? 'bg-blue-100 text-blue-600' :
-                                                    'bg-secondary text-muted-foreground'}`}>
-                                            {scores[c.id]?.score || '-'}
-                                        </span>
-                                        <div className="text-xs text-muted-foreground mt-1 max-w-[200px] mx-auto truncate">
-                                            {c.rubric && scores[c.id]?.score ? c.rubric[String(scores[c.id]?.score)] : 'Select a score'}
+
+                                    {/* Inputs */}
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="text-xs font-medium text-muted-foreground uppercase mb-1.5 block">
+                                                Mode
+                                            </label>
+                                            <select
+                                                className="w-full text-xs h-9 bg-background border border-input rounded px-2 focus:ring-1 focus:ring-primary outline-none"
+                                                value={scores[c.id]?.mode || 'Theoretical'}
+                                                onChange={e => handleScoreChange(c.id, 'mode', e.target.value)}
+                                            >
+                                                <option>Theoretical Research</option>
+                                                <option>Practical Lab Test</option>
+                                                <option>Vendor Demo</option>
+                                                <option>Customer Reference</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-medium text-muted-foreground uppercase mb-1.5 block">
+                                                Notes
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="w-full text-xs h-9 bg-background border border-input rounded px-2 focus:ring-1 focus:ring-primary outline-none"
+                                                placeholder="Add evidence..."
+                                                value={scores[c.id]?.evidence || ''}
+                                                onChange={e => handleScoreChange(c.id, 'evidence', e.target.value)}
+                                            />
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className="col-span-12 md:col-span-4">
-                                    <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
-                                        Evaluation Mode
-                                    </label>
-                                    <select
-                                        className="w-full bg-background border border-input rounded-xl px-4 py-2.5 text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all appearance-none"
-                                        value={scores[c.id]?.mode || 'Theoretical'}
-                                        onChange={e => handleScoreChange(c.id, 'mode', e.target.value)}
-                                    >
-                                        <option>Theoretical Research</option>
-                                        <option>Practical Lab Test</option>
-                                        <option>Vendor Demo</option>
-                                        <option>Customer Reference</option>
-                                    </select>
-                                </div>
-
-                                <div className="col-span-12 md:col-span-4">
-                                    <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
-                                        Evidence / Notes
-                                    </label>
-                                    <textarea
-                                        rows="3"
-                                        className="w-full bg-background border border-input rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
-                                        placeholder="Add specific observations, links, or justification..."
-                                        value={scores[c.id]?.evidence || ''}
-                                        onChange={e => handleScoreChange(c.id, 'evidence', e.target.value)}
-                                    />
-                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
+
+            {/* Floating Action Button (Mobile) - Optional, kept inline for now */}
         </div>
     );
 };

@@ -23,22 +23,27 @@ const calculateScores = (solution, scores, criteria) => {
         categories[c.category].criteria.push(c);
     });
 
+    // Global accumulators for Overall Score
+    let globalWeightedTotal = 0;
+    let globalWeightSum = 0;
+
     // Process scores
     scores.forEach(scoreItem => {
         const criterion = criteria.find(c => c.id === scoreItem.criterionId);
         if (criterion) {
             const cat = categories[criterion.category];
             const numericScore = parseFloat(scoreItem.score) || 0;
-
-            // Raw score sum
-            cat.totalScore += numericScore;
-            // Max potential (assuming 10 is max score)
-            cat.maxPossibleScore += 10;
-
-            // Weighted calculation
             const weight = criterion.weight || 1;
+
+            // Category Level
+            cat.totalScore += numericScore;
+            cat.maxPossibleScore += 5; // Rubric assumes max score of 5
             cat.weightedTotal += numericScore * weight;
             cat.weightSum += weight;
+
+            // Global Level
+            globalWeightedTotal += numericScore * weight;
+            globalWeightSum += weight;
         }
     });
 
@@ -49,14 +54,12 @@ const calculateScores = (solution, scores, criteria) => {
             category: cat.name,
             score: parseFloat(avgScore.toFixed(2)),
             rawTotal: cat.totalScore,
-            itemCount: cat.criteria.length // This might need to be 'answered items' count in a real scenario
+            itemCount: cat.criteria.length
         };
     });
 
-    // Calculate Overall Score (Simple average of category scores for now, or weighted category avg)
-    // Let's do a weighted average of categories if we had category weights, but for now simple average of category scores
-    const overallTotal = categoryResults.reduce((sum, cat) => sum + cat.score, 0);
-    const overallScore = categoryResults.length > 0 ? (overallTotal / categoryResults.length) : 0;
+    // Calculate Overall Score (True Weighted Average)
+    const overallScore = globalWeightSum > 0 ? (globalWeightedTotal / globalWeightSum) : 0;
 
     // MITRE ATT&CK Coverage
     // Filter related criteria
@@ -67,7 +70,8 @@ const calculateScores = (solution, scores, criteria) => {
     });
 
     let mitreScoreTotal = 0;
-    let mitreMaxTotal = mitreCriteria.length * 10;
+    // Max score for MITRE is based on max possible score (5)
+    let mitreMaxTotal = mitreCriteria.length * 5;
 
     mitreScores.forEach(s => mitreScoreTotal += (parseFloat(s.score) || 0));
     const coveragePercentage = mitreMaxTotal > 0 ? ((mitreScoreTotal / mitreMaxTotal) * 100) : 0;

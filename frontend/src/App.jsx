@@ -8,6 +8,7 @@ import CriteriaInput from './pages/CriteriaInput';
 import Comparison from './pages/Comparison';
 import Battle from './pages/Battle';
 import CriteriaBuilder from './pages/CriteriaBuilder';
+import About from './pages/About';
 import './index.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                             <Route path="/compare" element={<Comparison />} />
                             <Route path="/battle" element={<Battle />} />
                             <Route path="/criteria" element={<CriteriaBuilder />} />
+                            <Route path="/about" element={<About />} />
                         </Routes>
                     </Layout>
                 </Router>
