@@ -3,7 +3,7 @@
     "id": "c99899ca-e178-4d09-b18a-58d155b93caf",
     "name": "Palo Alto Cortex XSIAM",
     "vendor": "Palo Alto Networks",
-    "version": "2.0",
+    "version": "2.1",
     "deploymentModel": "SaaS",
     "methodType": "SOC Platform",
     "licenseInfo": "Endpoint-based",

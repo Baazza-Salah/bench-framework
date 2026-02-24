@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [react()],
     resolve: {
         alias: {
@@ -17,12 +17,13 @@ export default defineConfig({
         watch: {
             usePolling: true,
         },
-        proxy: {
+        // In dev mode, proxy /api to the backend. In production, Nginx handles this.
+        proxy: mode === 'development' ? {
             '/api': {
-                target: 'http://backend:5000',
+                target: 'http://localhost:5000',
                 changeOrigin: true,
                 secure: false,
             }
-        }
+        } : undefined,
     }
-})
+}))

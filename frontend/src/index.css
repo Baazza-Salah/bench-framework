@@ -69,11 +69,71 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Global smooth transitions for all interactive elements */
+  button, a, [role="button"] {
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease,
+                box-shadow 0.2s ease, color 0.2s ease;
+  }
+
+  button:hover:not(:disabled), a:hover {
+    transform: translateY(-1px);
+  }
+
+  button:active:not(:disabled), a:active {
+    transform: translateY(0px);
+  }
+}
+
+@layer utilities {
+  /* ---- Stagger delay helpers ---- */
+  .stagger-1  { animation-delay: 0ms;   }
+  .stagger-2  { animation-delay: 80ms;  }
+  .stagger-3  { animation-delay: 160ms; }
+  .stagger-4  { animation-delay: 240ms; }
+  .stagger-5  { animation-delay: 320ms; }
+  .stagger-6  { animation-delay: 400ms; }
+  .stagger-7  { animation-delay: 480ms; }
+  .stagger-8  { animation-delay: 560ms; }
+
+  /* ---- Shimmer loading gradient ---- */
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% auto;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* ---- Card hover lift ---- */
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -8px hsl(var(--foreground) / 0.08);
+  }
+
+  /* ---- Respect reduced motion ---- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

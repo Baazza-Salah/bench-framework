@@ -149,22 +149,22 @@ const Battle = () => {
     });
 
     return (
-        <div className="max-w-[1600px] mx-auto pb-20 fade-in animate-in duration-500 font-sans">
+        <div className="max-w-[1600px] mx-auto pb-20 font-sans">
 
             {/* 1. Header & Controls */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <div className="flex flex-col gap-4 mb-6 md:mb-8">
                 <div>
-                    <h1 className="text-3xl font-black text-foreground flex items-center gap-2">
-                        <ArrowRightLeft className="text-primary" size={28} />
+                    <h1 className="text-2xl md:text-3xl font-black text-foreground flex items-center gap-2">
+                        <ArrowRightLeft className="text-primary" size={24} />
                         Comparison Engine
                     </h1>
-                    <p className="text-muted-foreground mt-1">Side-by-side technical evaluation.</p>
+                    <p className="text-muted-foreground mt-1 text-sm">Side-by-side technical evaluation.</p>
                 </div>
 
-                {/* Solution Selectors Inline */}
-                <div className="flex items-center gap-4 bg-card border border-border p-2 rounded-xl shadow-sm">
+                {/* Solution Selectors */}
+                <div className="flex flex-wrap items-center gap-3 bg-card border border-border p-2 rounded-xl shadow-sm w-full sm:w-fit">
                     <select
-                        className="bg-transparent text-sm font-semibold outline-none text-foreground cursor-pointer p-1"
+                        className="bg-transparent text-sm font-semibold outline-none text-foreground cursor-pointer p-1 flex-1 min-w-0"
                         value={leftId}
                         onChange={e => setLeftId(e.target.value)}
                     >
@@ -172,7 +172,7 @@ const Battle = () => {
                     </select>
                     <span className="text-xs font-bold text-muted-foreground px-2">VS</span>
                     <select
-                        className="bg-transparent text-sm font-semibold outline-none text-foreground cursor-pointer p-1 text-right"
+                        className="bg-transparent text-sm font-semibold outline-none text-foreground cursor-pointer p-1 flex-1 min-w-0"
                         value={rightId}
                         onChange={e => setRightId(e.target.value)}
                     >
@@ -182,17 +182,17 @@ const Battle = () => {
             </div>
 
             {/* 2. Scoreboard Hero Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-8 rounded-2xl overflow-hidden border border-border shadow-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 mb-6 md:mb-8 rounded-2xl overflow-hidden border border-border shadow-sm">
 
                 {/* Left Side */}
-                <div className={`p-8 md:p-12 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-500 ${leader === 'left' ? 'bg-blue-50/50 dark:bg-blue-950/20' : 'bg-card'}`}>
+                <div className={`p-6 md:p-12 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-500 ${leader === 'left' ? 'bg-blue-50/50 dark:bg-blue-950/20' : 'bg-card'}`}>
                     {leader === 'left' && <div className="absolute top-4 right-4 text-blue-500 font-bold text-xs bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded-full animate-pulse flex items-center gap-1"><Crown size={12} /> LEADER</div>}
 
-                    <h2 className="text-2xl md:text-4xl font-black text-foreground text-center mb-2">{leftSol?.solutionName}</h2>
-                    <p className="text-sm text-muted-foreground mb-6 font-medium">{leftSol?.vendor}</p>
+                    <h2 className="text-xl md:text-4xl font-black text-foreground text-center mb-2">{leftSol?.solutionName}</h2>
+                    <p className="text-sm text-muted-foreground mb-4 md:mb-6 font-medium">{leftSol?.vendor}</p>
 
                     <div className="relative">
-                        <div className="text-7xl md:text-8xl font-black text-blue-600 dark:text-blue-400 tabular-nums tracking-tighter">
+                        <div className="text-5xl md:text-8xl font-black text-blue-600 dark:text-blue-400 tabular-nums tracking-tighter">
                             {leftScore.toFixed(2)}
                         </div>
                         <div className="absolute -right-8 top-2">
@@ -204,14 +204,14 @@ const Battle = () => {
                 </div>
 
                 {/* Right Side */}
-                <div className={`p-8 md:p-12 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-500 border-t lg:border-t-0 lg:border-l border-border ${leader === 'right' ? 'bg-red-50/50 dark:bg-red-950/20' : 'bg-card'}`}>
+                <div className={`p-6 md:p-12 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-500 border-t sm:border-t-0 sm:border-l border-border ${leader === 'right' ? 'bg-red-50/50 dark:bg-red-950/20' : 'bg-card'}`}>
                     {leader === 'right' && <div className="absolute top-4 left-4 text-red-500 font-bold text-xs bg-red-100 dark:bg-red-900/40 px-3 py-1 rounded-full animate-pulse flex items-center gap-1"><Crown size={12} /> LEADER</div>}
 
-                    <h2 className="text-2xl md:text-4xl font-black text-foreground text-center mb-2">{rightSol?.solutionName}</h2>
-                    <p className="text-sm text-muted-foreground mb-6 font-medium">{rightSol?.vendor}</p>
+                    <h2 className="text-xl md:text-4xl font-black text-foreground text-center mb-2">{rightSol?.solutionName}</h2>
+                    <p className="text-sm text-muted-foreground mb-4 md:mb-6 font-medium">{rightSol?.vendor}</p>
 
                     <div className="relative">
-                        <div className="text-7xl md:text-8xl font-black text-red-600 dark:text-red-400 tabular-nums tracking-tighter">
+                        <div className="text-5xl md:text-8xl font-black text-red-600 dark:text-red-400 tabular-nums tracking-tighter">
                             {rightScore.toFixed(2)}
                         </div>
                         <div className="absolute -right-8 top-2">
@@ -224,7 +224,7 @@ const Battle = () => {
             </div>
 
             {/* 3. Detailed Stats Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
 
                 {/* Radar Chart (1 col) */}
                 <Card className="lg:col-span-1 h-fit">

@@ -202,23 +202,23 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="max-w-[1600px] mx-auto pb-20 fade-in animate-in duration-500">
+        <div className="max-w-[1600px] mx-auto pb-20">
             {/* Header Flex */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
                 <div>
-                    <h1 className="text-3xl font-black text-foreground flex items-center gap-3">
+                    <h1 className="text-2xl md:text-3xl font-black text-foreground flex items-center gap-3">
                         <LayoutDashboard className="text-primary" />
                         Dashboard
                     </h1>
-                    <p className="text-muted-foreground mt-1">Real-time benchmarking intelligence.</p>
+                    <p className="text-muted-foreground mt-1 text-sm md:text-base">Real-time benchmarking intelligence.</p>
                 </div>
-                <div className="flex gap-3">
-                    <Button variant="outline" asChild>
+                <div className="flex gap-2 sm:gap-3 flex-wrap">
+                    <Button variant="outline" size="sm" asChild>
                         <Link to="/compare">
-                            <BarChart3 className="mr-2 h-4 w-4" /> View Full Report
+                            <BarChart3 className="mr-2 h-4 w-4" /> Full Report
                         </Link>
                     </Button>
-                    <Button asChild>
+                    <Button size="sm" asChild>
                         <Link to="/solution">
                             <Plus className="mr-2 h-4 w-4" /> New Assessment
                         </Link>
@@ -227,7 +227,7 @@ const Dashboard = () => {
             </div>
 
             {/* KPI Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
                 <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background border-blue-100 dark:border-blue-900/50">
                     <CardContent className="p-6">
                         <div className="flex justify-between items-start">
@@ -292,7 +292,7 @@ const Dashboard = () => {
             </div>
 
             {/* Main Content Grid (Bento) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
 
                 {/* 1. Top Performers Chart (Span 2) */}
                 <Card className="lg:col-span-2 flex flex-col">
@@ -328,7 +328,7 @@ const Dashboard = () => {
             </div>
 
             {/* Critical Market Structure Charts */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
 
                 {/* 1. Deployment Distribution (Doughnut) */}
                 <Card>
@@ -441,7 +441,7 @@ const Dashboard = () => {
                 </Card>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
 
                 {/* 3. Recent Activity / Feed */}
                 <Card className="lg:col-span-1 h-fit">
@@ -483,21 +483,21 @@ const Dashboard = () => {
                     </div>
 
                     <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm text-left">
+                        <div className="overflow-x-auto -mx-0">
+                            <table className="w-full text-sm text-left min-w-[500px]">
                                 <thead className="bg-muted/50 border-b border-border text-muted-foreground font-medium">
                                     <tr>
-                                        <th className="px-6 py-4 w-[60px] text-center">Rank</th>
-                                        <th className="px-6 py-4">Solution</th>
-                                        <th className="px-6 py-4">Deployment</th>
-                                        <th className="px-6 py-4 text-center">Score</th>
-                                        <th className="px-6 py-4 text-right">Action</th>
+                                        <th className="px-4 md:px-6 py-3 md:py-4 w-[50px] md:w-[60px] text-center">Rank</th>
+                                        <th className="px-4 md:px-6 py-3 md:py-4">Solution</th>
+                                        <th className="px-4 md:px-6 py-3 md:py-4 hidden sm:table-cell">Deployment</th>
+                                        <th className="px-4 md:px-6 py-3 md:py-4 text-center">Score</th>
+                                        <th className="px-4 md:px-6 py-3 md:py-4 text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-border">
                                     {rankings.slice(0, 5).map((sol, idx) => (
                                         <tr key={sol.solutionId} className="hover:bg-muted/30 transition-colors">
-                                            <td className="px-6 py-4 text-center">
+                                            <td className="px-4 md:px-6 py-3 md:py-4 text-center">
                                                 <div className={`
                                                     inline-flex cursor-default items-center justify-center w-6 h-6 rounded-full text-xs font-bold
                                                     ${idx === 0 ? 'bg-amber-100 text-amber-700' :
@@ -507,23 +507,23 @@ const Dashboard = () => {
                                                     {idx + 1}
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 font-medium">
+                                            <td className="px-4 md:px-6 py-3 md:py-4 font-medium">
                                                 {sol.solutionName}
                                                 <div className="text-xs text-muted-foreground font-normal">{sol.vendor}</div>
                                             </td>
-                                            <td className="px-6 py-4">
+                                            <td className="px-4 md:px-6 py-3 md:py-4 hidden sm:table-cell">
                                                 <Badge variant="outline" className="font-normal text-xs">
                                                     {sol.metrics?.deploymentType || 'N/A'}
                                                 </Badge>
                                             </td>
-                                            <td className="px-6 py-4 text-center">
+                                            <td className="px-4 md:px-6 py-3 md:py-4 text-center">
                                                 <span className={`font-bold ${sol.overallScore >= 4 ? 'text-emerald-600' :
                                                     sol.overallScore >= 3 ? 'text-blue-600' : 'text-amber-600'
                                                     }`}>
                                                     {sol.overallScore.toFixed(2)}
                                                 </span>
                                             </td>
-                                            <td className="px-6 py-4 text-right">
+                                            <td className="px-4 md:px-6 py-3 md:py-4 text-right">
                                                 <Button variant="outline" size="sm" className="h-7 text-xs" asChild>
                                                     <Link to={`/assess/${sol.solutionId}`}>View</Link>
                                                 </Button>

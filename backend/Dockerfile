@@ -5,12 +5,10 @@ WORKDIR /app
 COPY package.json .
 COPY package-lock.json* ./
 
-RUN npm install
+RUN npm install --omit=dev
 
 COPY . .
 
-# Expose port 5000
 EXPOSE 5000
 
-# Run the application
-CMD ["npm", "run", "dev"]
+CMD ["node", "server.js"]

@@ -19,11 +19,21 @@ const CriteriaInput = () => {
 
     const categories = [...new Set(criteria.map(c => c.category))];
 
+    const [activeCriterion, setActiveCriterion] = useState(null);
+
     useEffect(() => {
         if (categories.length > 0 && !activeCategory) {
             setActiveCategory(categories[0]);
         }
     }, [categories]);
+
+    // Set default active criterion when category changes
+    useEffect(() => {
+        if (activeCategory) {
+            const first = criteria.find(c => c.category === activeCategory);
+            if (first) setActiveCriterion(first);
+        }
+    }, [activeCategory, criteria]);
 
     useEffect(() => {
         const fetchExistingScores = async () => {
@@ -87,28 +97,8 @@ const CriteriaInput = () => {
         return Math.round((current / total) * 100);
     };
 
-    // Helper to get rubric levels for custom tooltip
-    const renderRubricTooltip = (c) => {
-        if (!c.rubric) return null;
-        return (
-            <div className="absolute z-50 left-0 bottom-full mb-2 w-[400px] bg-popover border border-border rounded-xl p-4 shadow-xl opacity-0 group-hover/rubric:opacity-100 pointer-events-none transition-all duration-200 text-xs translate-y-2 group-hover/rubric:translate-y-0">
-                <div className="font-bold text-foreground mb-2 border-b border-border pb-1">SCORING GUIDE</div>
-                <div className="space-y-2">
-                    {[1, 2, 3, 4, 5].map(lvl => (
-                        <div key={lvl} className="grid grid-cols-12 gap-2">
-                            <span className={`col-span-1 font-bold ${lvl >= 4 ? 'text-emerald-600' : 'text-muted-foreground'}`}>{lvl}</span>
-                            <span className="col-span-11 text-muted-foreground">{c.rubric[String(lvl)] || 'N/A'}</span>
-                        </div>
-                    ))}
-                </div>
-                {/* Arrow */}
-                <div className="absolute left-4 top-full w-2 h-2 bg-popover border-r border-b border-border transform rotate-45 -mt-1"></div>
-            </div>
-        );
-    };
-
     return (
-        <div className="max-w-[1600px] mx-auto pb-20 animate-in fade-in duration-500">
+        <div className="max-w-[1920px] mx-auto pb-20 animate-in fade-in duration-500 px-4 md:px-8">
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-8 border-b border-border pb-6">
                 <div>
@@ -141,10 +131,10 @@ const CriteriaInput = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-8 items-start">
+            <div className="flex flex-col lg:flex-row gap-6 items-start relative box-border">
 
-                {/* Sidebar Categories */}
-                <div className="w-full lg:w-[260px] shrink-0 sticky top-4">
+                {/* Left Sidebar: Categories */}
+                <div className="w-full lg:w-[220px] shrink-0 sticky top-24 z-10">
                     <div className="space-y-1">
                         <div className="px-3 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">
                             Categories
@@ -158,42 +148,54 @@ const CriteriaInput = () => {
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors flex items-center justify-between ${isActive
-                                        ? 'bg-primary text-primary-foreground font-medium'
+                                    className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors flex items-center justify-between group ${isActive
+                                        ? 'bg-primary text-primary-foreground font-medium shadow-md shadow-primary/20'
                                         : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
                                         }`}
                                 >
-                                    <span>{cat}</span>
-                                    {answered === count && <CheckCircle2 size={14} className={isActive ? "text-primary-foreground/70" : "text-emerald-500"} />}
+                                    <span className="truncate mr-2">{cat}</span>
+                                    {answered === count ? (
+                                        <CheckCircle2 size={14} className={isActive ? "text-primary-foreground/90" : "text-emerald-500"} />
+                                    ) : (
+                                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${isActive ? 'bg-primary-foreground/20' : 'bg-secondary'}`}>
+                                            {answered}/{count}
+                                        </span>
+                                    )}
                                 </button>
                             );
                         })}
                     </div>
                 </div>
 
-                {/* Content Area */}
-                <div className="flex-1 space-y-4 min-w-0">
+                {/* Middle Content: Criteria Cards */}
+                <div className="flex-1 min-w-0 space-y-4">
                     {criteria.filter(c => c.category === activeCategory).map(c => {
                         const score = scores[c.id]?.score || 0;
+                        const isActive = activeCriterion?.id === c.id;
 
                         return (
-                            <div key={c.id} className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition-colors">
+                            <div
+                                key={c.id}
+                                onMouseEnter={() => setActiveCriterion(c)}
+                                onMouseLeave={() => setActiveCriterion(null)}
+                                className={`group relative bg-card border rounded-lg p-5 transition-all duration-200 ${isActive
+                                    ? 'border-primary ring-1 ring-primary/20 shadow-lg shadow-primary/5'
+                                    : 'border-border hover:border-primary/50'
+                                    }`}
+                            >
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
                                         <div className="flex items-center gap-2 mb-1">
-                                            <h3 className="font-semibold text-foreground text-lg">{c.name}</h3>
-                                            <Badge variant="outline" className="text-[10px] font-normal">
+                                            <h3 className={`font-semibold text-lg transition-colors ${isActive ? 'text-primary' : 'text-foreground'}`}>
+                                                {c.name}
+                                            </h3>
+                                            <Badge variant="outline" className="text-[10px] font-normal bg-secondary/50">
                                                 Weight: {c.weight}
                                             </Badge>
                                         </div>
-                                        <p className="text-muted-foreground text-sm max-w-2xl">{c.description}</p>
-                                    </div>
-                                    {/* 
-                                     * Removed score labels (5/5, Excellent) per user request 
-                                     * Keeping layout structure balanced 
-                                     */}
-                                    <div className="text-right">
-                                        {/* Empty or minimal indicator if needed, currently requested to be removed */}
+                                        <p className="text-muted-foreground text-sm max-w-2xl line-clamp-2">
+                                            {c.description}
+                                        </p>
                                     </div>
                                 </div>
 
@@ -204,7 +206,9 @@ const CriteriaInput = () => {
                                             <label className="text-xs font-medium text-muted-foreground uppercase">
                                                 Score
                                             </label>
-                                            <span className="text-sm font-bold text-primary font-mono">{score}/5</span>
+                                            <span className={`text-sm font-bold font-mono transition-colors ${score > 0 ? 'text-primary' : 'text-muted-foreground'}`}>
+                                                {score}/5
+                                            </span>
                                         </div>
 
                                         <div className="relative h-6 flex items-center select-none group/slider">
@@ -254,16 +258,21 @@ const CriteriaInput = () => {
                                             <label className="text-xs font-medium text-muted-foreground uppercase mb-1.5 block">
                                                 Mode
                                             </label>
-                                            <select
-                                                className="w-full text-xs h-9 bg-background border border-input rounded px-2 focus:ring-1 focus:ring-primary outline-none"
-                                                value={scores[c.id]?.mode || 'Theoretical'}
-                                                onChange={e => handleScoreChange(c.id, 'mode', e.target.value)}
-                                            >
-                                                <option>Theoretical Research</option>
-                                                <option>Practical Lab Test</option>
-                                                <option>Vendor Demo</option>
-                                                <option>Customer Reference</option>
-                                            </select>
+                                            <div className="relative">
+                                                <select
+                                                    className="w-full text-xs h-9 bg-background border border-input rounded px-2 pr-4 focus:ring-1 focus:ring-primary outline-none appearance-none"
+                                                    value={scores[c.id]?.mode || 'Theoretical'}
+                                                    onChange={e => handleScoreChange(c.id, 'mode', e.target.value)}
+                                                >
+                                                    <option>Theoretical Research</option>
+                                                    <option>Practical Lab Test</option>
+                                                    <option>Vendor Demo</option>
+                                                    <option>Customer Reference</option>
+                                                </select>
+                                                <div className="absolute right-2 top-2.5 pointer-events-none text-muted-foreground">
+                                                    <ChevronRight size={12} className="rotate-90" />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
                                             <label className="text-xs font-medium text-muted-foreground uppercase mb-1.5 block">
@@ -271,7 +280,7 @@ const CriteriaInput = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                className="w-full text-xs h-9 bg-background border border-input rounded px-2 focus:ring-1 focus:ring-primary outline-none"
+                                                className="w-full text-xs h-9 bg-background border border-input rounded px-2 focus:ring-1 focus:ring-primary outline-none placeholder:text-muted-foreground/50"
                                                 placeholder="Add evidence..."
                                                 value={scores[c.id]?.evidence || ''}
                                                 onChange={e => handleScoreChange(c.id, 'evidence', e.target.value)}
@@ -285,7 +294,46 @@ const CriteriaInput = () => {
                 </div>
             </div>
 
-            {/* Floating Action Button (Mobile) - Optional, kept inline for now */}
+            {/* Floating Minimal Rubric Tooltip */}
+            {activeCriterion && (
+                <div className="fixed top-24 right-8 w-80 z-50 animate-in slide-in-from-right-8 fade-in duration-300 pointer-events-none">
+                    <div className="bg-popover/90 backdrop-blur-md border border-primary/20 rounded-xl p-5 shadow-2xl pointer-events-auto">
+                        <div className="mb-3 border-b border-border/50 pb-2">
+                            <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">
+                                Rubric Guide
+                            </div>
+                            <h4 className="font-bold text-foreground text-sm line-clamp-1">
+                                {activeCriterion.name}
+                            </h4>
+                        </div>
+
+                        <div className="space-y-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-1">
+                            {[5, 4, 3, 2, 1].map(lvl => {
+                                const isSelected = scores[activeCriterion.id]?.score === lvl;
+                                return (
+                                    <div
+                                        key={lvl}
+                                        onClick={() => handleScoreChange(activeCriterion.id, 'score', lvl)}
+                                        className={`p-2 rounded-md transition-all cursor-pointer border ${isSelected
+                                            ? 'bg-primary/10 border-primary/40'
+                                            : 'hover:bg-primary/5 border-transparent'
+                                            }`}
+                                    >
+                                        <div className="flex items-start gap-2">
+                                            <span className={`text-xs font-bold w-4 mt-0.5 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`}>
+                                                {lvl}
+                                            </span>
+                                            <p className="text-xs text-muted-foreground leading-snug">
+                                                {activeCriterion.rubric?.[String(lvl)] || 'N/A'}
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

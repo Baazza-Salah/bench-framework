@@ -1,0 +1,8 @@
+node_modules
+.git
+*.ps1
+vm-ip.txt
+*.log
+*.tex
+*.py
+.gitignore

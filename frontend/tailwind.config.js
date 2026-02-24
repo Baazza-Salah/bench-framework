@@ -48,7 +48,51 @@ export default {
             },
             fontFamily: {
                 sans: ['Outfit', 'sans-serif'],
-            }
+            },
+            keyframes: {
+                'fade-up': {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                'fade-in': {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                'slide-in-left': {
+                    '0%': { opacity: '0', transform: 'translateX(-16px)' },
+                    '100%': { opacity: '1', transform: 'translateX(0)' },
+                },
+                'float': {
+                    '0%, 100%': { transform: 'translateY(0px)' },
+                    '50%': { transform: 'translateY(-8px)' },
+                },
+                'shimmer': {
+                    '0%': { backgroundPosition: '-200% center' },
+                    '100%': { backgroundPosition: '200% center' },
+                },
+                'scale-in': {
+                    '0%': { opacity: '0', transform: 'scale(0.90)' },
+                    '100%': { opacity: '1', transform: 'scale(1)' },
+                },
+                'glow-pulse': {
+                    '0%, 100%': { boxShadow: '0 0 0 0 hsl(var(--primary) / 0.4)' },
+                    '50%': { boxShadow: '0 0 0 5px hsl(var(--primary) / 0)' },
+                },
+                'slide-down': {
+                    '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+            },
+            animation: {
+                'fade-up': 'fade-up 0.5s ease-out both',
+                'fade-in': 'fade-in 0.4s ease-out both',
+                'slide-in-left': 'slide-in-left 0.4s ease-out both',
+                'float': 'float 3s ease-in-out infinite',
+                'shimmer': 'shimmer 2.5s linear infinite',
+                'scale-in': 'scale-in 0.25s ease-out both',
+                'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+                'slide-down': 'slide-down 0.35s ease-out both',
+            },
         },
     },
     plugins: [],

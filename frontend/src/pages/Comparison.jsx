@@ -331,15 +331,15 @@ const Comparison = () => {
     return (
         <div className="pb-12" id="report-content">
             {/* Header with Export */}
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 md:mb-8">
                 <div>
-                    <h1 className="text-3xl font-black text-foreground tracking-tight">Benchmark Analysis</h1>
-                    <p className="text-muted-foreground mt-1">Comparative assessment of SOC solutions.</p>
+                    <h1 className="text-2xl md:text-3xl font-black text-foreground tracking-tight">Benchmark Analysis</h1>
+                    <p className="text-muted-foreground mt-1 text-sm">Comparative assessment of SOC solutions.</p>
                 </div>
                 <button
                     id="export-btn"
                     onClick={exportPDF}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg shadow-sm transition-all flex items-center gap-2 text-sm font-medium"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg shadow-sm transition-all flex items-center gap-2 text-sm font-medium w-fit"
                 >
                     <Download size={16} />
                     Export PDF
@@ -348,7 +348,7 @@ const Comparison = () => {
 
             <div className="space-y-6">
                 {/* Top: Ranked Solution Cards */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-3">
                     {rankings.map((sol, idx) => {
                         const isHovered = hoveredSolution === idx;
                         const isDimmed = hoveredSolution !== null && !isHovered;
@@ -448,15 +448,15 @@ const Comparison = () => {
                     </div>
 
                     {/* Pie Chart + Legend Table */}
-                    <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
-                        <h2 className="text-sm font-bold text-foreground mb-6 flex items-center gap-2 uppercase tracking-wide">
+                    <div className="bg-card rounded-xl border border-border p-4 md:p-6 shadow-sm">
+                        <h2 className="text-sm font-bold text-foreground mb-4 md:mb-6 flex items-center gap-2 uppercase tracking-wide">
                             <span className="w-2 h-2 bg-primary rounded-full"></span>
                             MITRE Coverage Distribution
                         </h2>
-                        <div className="grid grid-cols-5 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
                             {/* Pie Chart */}
-                            <div className="col-span-2 flex items-center justify-center">
-                                <div className="w-full h-[320px] relative">
+                            <div className="md:col-span-2 flex items-center justify-center">
+                                <div className="w-full h-[200px] md:h-[320px] relative">
                                     <Doughnut data={pieChartData} options={pieOptions} />
                                     {/* Center Text */}
                                     <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
@@ -467,7 +467,7 @@ const Comparison = () => {
                             </div>
 
                             {/* Legend Table */}
-                            <div className="col-span-3 flex flex-col justify-center">
+                            <div className="md:col-span-3 flex flex-col justify-center">
                                 <div className="space-y-1">
                                     <div className="grid grid-cols-2 gap-x-4 text-[10px] font-bold text-muted-foreground pb-2 border-b border-border uppercase tracking-wider">
                                         <div>Solution</div>
@@ -554,10 +554,10 @@ const Comparison = () => {
                 </div>
 
                 {/* Bottom: Scoring Matrix */}
-                <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
+                <div className="bg-card rounded-xl border border-border p-4 md:p-6 shadow-sm">
                     <h2 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wide">Key Scoring Matrix</h2>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-xs">
+                    <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
+                        <table className="w-full text-xs min-w-[480px]">
                             <thead>
                                 <tr className="border-b border-border">
                                     <th className="py-3 px-4 text-left text-muted-foreground font-bold text-[10px] uppercase tracking-wider">Solution</th>
