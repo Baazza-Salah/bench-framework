@@ -48,5 +48,15 @@
     "methodType": "SIEM",
     "licenseInfo": "Employee-count",
     "createdAt": "2026-02-06T19:35:18.993721"
+  },
+  {
+    "id": "e15a57c2-5be9-4931-9781-e3636bbbfdf9",
+    "name": "SentinelOne Singularity",
+    "vendor": "SentinelOne",
+    "version": "Cloud",
+    "deploymentModel": "SaaS",
+    "methodType": "XDR/SOC Platform",
+    "licenseInfo": "Endpoint-based",
+    "createdAt": "2026-02-27T22:09:25.239286"
   }
 ]
