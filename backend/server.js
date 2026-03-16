@@ -63,7 +63,7 @@ const getCurrentUser = (req) => {
   return users.find(u => u.token === token) || null;
 };
 
-const logAction = (username, action, target, details = "") => {
+const logAction = (username, action, target, details = "", changes = null) => {
   const logs = readData(LOGS_FILE);
   logs.unshift({
     id: uuidv4(),
@@ -71,9 +71,35 @@ const logAction = (username, action, target, details = "") => {
     username,
     action,
     target,
-    details
+    details,
+    changes
   });
   writeData(LOGS_FILE, logs.slice(0, 1000));
+};
+
+const computeChanges = (oldObj, newObj, ignoredKeys = ['id', 'createdAt', 'updatedAt']) => {
+  const changes = {};
+  const allKeys = new Set([...Object.keys(oldObj || {}), ...Object.keys(newObj || {})]);
+  
+  allKeys.forEach(key => {
+    if (ignoredKeys.includes(key)) return;
+    
+    const oldVal = oldObj ? oldObj[key] : undefined;
+    const newVal = newObj ? newObj[key] : undefined;
+    
+    // Simple equality for primitives, JSON stringify for objects/arrays to compare
+    const isDifferent = typeof oldVal === 'object' && typeof newVal === 'object' 
+        ? JSON.stringify(oldVal) !== JSON.stringify(newVal)
+        : oldVal !== newVal;
+        
+    if (isDifferent) {
+      // Don't log if both are effectively empty/null/undefined
+      if (!oldVal && !newVal) return;
+      changes[key] = { old: oldVal, new: newVal };
+    }
+  });
+  
+  return Object.keys(changes).length > 0 ? changes : null;
 };
 
 // --- DATA INITIALIZATION ---
@@ -176,12 +202,13 @@ app.put('/api/solutions/:id', (req, res) => {
       return res.status(404).json({ error: 'Solution not found' });
     }
 
-    // Protect ID from being overwritten if sent in body, but allow other updates
+    const oldSolution = { ...solutions[index] };
     const { id, ...updateData } = req.body;
     solutions[index] = { ...solutions[index], ...updateData };
 
     if (writeData(SOLUTIONS_FILE, solutions)) {
-      logAction(user.username, 'UPDATE', 'Solution', `Updated solution ${solutions[index].name || req.params.id}`);
+      const changes = computeChanges(oldSolution, solutions[index]);
+      logAction(user.username, 'UPDATE', 'Solution', `Updated solution ${solutions[index].name || req.params.id}`, changes);
       res.json(solutions[index]);
     } else {
       res.status(500).json({ error: 'Failed to update solution' });
@@ -268,11 +295,12 @@ app.put('/api/criteria/:id', (req, res) => {
       return res.status(404).json({ error: 'Criterion not found' });
     }
 
-    // Preserve ID, update other fields
+    const oldCriterion = { ...criteria[index] };
     criteria[index] = { ...criteria[index], ...req.body, id: req.params.id };
 
     if (writeData(CRITERIA_FILE, criteria)) {
-      logAction(user.username, 'UPDATE', 'Criterion', `Updated criterion ${criteria[index].name || req.params.id}`);
+      const changes = computeChanges(oldCriterion, criteria[index]);
+      logAction(user.username, 'UPDATE', 'Criterion', `Updated criterion ${criteria[index].name || req.params.id}`, changes);
       res.json(criteria[index]);
     } else {
       res.status(500).json({ error: 'Failed to update criterion' });
@@ -340,18 +368,30 @@ app.post('/api/scores', (req, res) => {
     allScores.push(solutionEntry);
   }
 
+  const scoreChanges = {};
+  
   // Merge items
   items.forEach(newItem => {
     const idx = solutionEntry.items.findIndex(i => i.criterionId === newItem.criterionId);
     if (idx >= 0) {
-      solutionEntry.items[idx] = { ...solutionEntry.items[idx], ...newItem };
+      const oldItem = solutionEntry.items[idx];
+      const diff = computeChanges(oldItem, newItem, ['criterionId']);
+      if (diff) {
+        scoreChanges[newItem.criterionId] = diff;
+      }
+      solutionEntry.items[idx] = { ...oldItem, ...newItem };
     } else {
+      scoreChanges[newItem.criterionId] = { new: newItem };
       solutionEntry.items.push(newItem);
     }
   });
 
   writeData(SCORES_FILE, allScores);
-  logAction(user.username, 'UPDATE', 'Scores', `Updated ${items.length} scores for solution ${solutionId}`);
+  
+  const hasChanges = Object.keys(scoreChanges).length > 0;
+  const changesPayload = hasChanges ? { scores: scoreChanges } : null;
+  
+  logAction(user.username, 'UPDATE', 'Scores', `Updated ${items.length} scores for solution ${solutionId}`, changesPayload);
   res.json({ message: 'Scores updated', count: items.length });
 });
 

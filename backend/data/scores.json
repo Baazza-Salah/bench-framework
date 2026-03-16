@@ -19,7 +19,7 @@
         "criterionId": "DP-003",
         "evidence": "-",
         "mode": "Manual",
-        "score": 4
+        "score": 5
       },
       {
         "criterionId": "DP-004",
@@ -967,7 +967,7 @@
         "criterionId": "DP-001",
         "evidence": "-",
         "mode": "Manual",
-        "score": 3
+        "score": 0
       },
       {
         "criterionId": "DP-002",

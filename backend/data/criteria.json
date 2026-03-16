@@ -544,5 +544,19 @@
       "4": "Good",
       "5": "Excellent"
     }
+  },
+  {
+    "id": "27408079-7f0c-49bb-a1d0-04971fdafc30",
+    "name": "W",
+    "category": "General",
+    "weight": 3,
+    "description": "WWW",
+    "rubric": {
+      "1": "Ad-hoc / Non-existent capability.",
+      "2": "Reactive / Manual processes.",
+      "3": "Defined / Standard process.",
+      "4": "Managed / Metrics monitored.",
+      "5": "Optimized / Automated & Proactive."
+    }
   }
 ]

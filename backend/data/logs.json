@@ -1,5 +1,40 @@
 [
   {
+    "id": "9c54f10d-b862-4dc2-ba8d-bff3f8334dbd",
+    "timestamp": "2026-03-16T12:49:02.146Z",
+    "username": "salah-baazza",
+    "action": "CREATE",
+    "target": "Criterion",
+    "details": "Added criterion W",
+    "changes": null
+  },
+  {
+    "id": "79a7fab6-2d0d-4e36-9e57-fb74289fe9a6",
+    "timestamp": "2026-03-16T12:48:25.338Z",
+    "username": "salah-baazza",
+    "action": "UPDATE",
+    "target": "Scores",
+    "details": "Updated 39 scores for solution b333db4f-3371-45ea-8c75-ec7e0aaa5456",
+    "changes": {
+      "scores": {
+        "DP-001": {
+          "score": {
+            "old": 3,
+            "new": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "82f58a5e-71d3-4f2c-aeb5-20ea77044dad",
+    "timestamp": "2026-03-16T12:26:01.153Z",
+    "username": "salah-baazza",
+    "action": "UPDATE",
+    "target": "Scores",
+    "details": "Updated 39 scores for solution c99899ca-e178-4d09-b18a-58d155b93caf"
+  },
+  {
     "id": "6d9d71c7-d8b8-49e6-b899-c8ffd15a01d0",
     "timestamp": "2026-03-16T10:35:02.458Z",
     "username": "salah-baazza",

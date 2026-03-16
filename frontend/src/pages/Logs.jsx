@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Activity, Clock, User, Filter, RefreshCw, Layers } from 'lucide-react';
+import { Activity, Clock, User, Filter, RefreshCw, Layers, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Logs = () => {
     const [logs, setLogs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('All');
+    const [expandedLogs, setExpandedLogs] = useState(new Set());
     
     const fetchLogs = async () => {
         setLoading(true);
@@ -34,6 +35,24 @@ const Logs = () => {
             case 'DELETE': return 'bg-rose-500/10 text-rose-500 border-rose-500/20';
             default: return 'bg-secondary text-foreground border-border';
         }
+    };
+
+    const toggleExpand = (logId) => {
+        setExpandedLogs(prev => {
+            const next = new Set(prev);
+            if (next.has(logId)) {
+                next.delete(logId);
+            } else {
+                next.add(logId);
+            }
+            return next;
+        });
+    };
+
+    const formatChangeValue = (val) => {
+        if (val === null || val === undefined) return <span className="text-muted-foreground italic">empty</span>;
+        if (typeof val === 'object') return <span className="font-mono text-xs">{JSON.stringify(val)}</span>;
+        return <span className="font-medium font-mono text-foreground text-xs">{String(val)}</span>;
     };
 
     const formatDate = (dateString) => {
@@ -124,13 +143,73 @@ const Logs = () => {
                                         <span className="text-muted-foreground text-sm mx-1">modified</span>
                                         <span className="font-bold text-foreground text-sm">{log.target}</span>
                                     </div>
-                                    <p className="text-sm text-muted-foreground truncate font-medium">
-                                        {log.details}
-                                    </p>
+                                    <div className="flex items-center gap-3">
+                                        <p className="text-sm text-muted-foreground truncate font-medium">
+                                            {log.details}
+                                        </p>
+                                        {log.changes && (
+                                            <button 
+                                                onClick={() => toggleExpand(log.id)}
+                                                className="flex items-center gap-1 text-xs text-primary hover:bg-primary/10 px-2 py-0.5 rounded-md transition-colors font-bold"
+                                            >
+                                                {expandedLogs.has(log.id) ? (
+                                                    <><ChevronUp size={14} /> Hide Details</>
+                                                ) : (
+                                                    <><ChevronDown size={14} /> View Changes</>
+                                                )}
+                                            </button>
+                                        )}
+                                    </div>
+
+                                    {/* Expanded Changes Section */}
+                                    {log.changes && expandedLogs.has(log.id) && (
+                                        <div className="mt-4 p-4 bg-background border border-border rounded-xl shadow-inner animate-in fade-in slide-in-from-top-2">
+                                            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-wider mb-3">Exact Modifications</h4>
+                                            
+                                            {log.target === 'Scores' && log.changes?.scores ? (
+                                                <div className="space-y-4">
+                                                    {Object.entries(log.changes.scores).map(([critId, critDiff]) => (
+                                                        <div key={critId} className="space-y-2">
+                                                            <div className="text-xs font-bold text-primary">Criterion ID: {critId}</div>
+                                                            {Object.entries(critDiff).map(([field, vals]) => {
+                                                                if (field === 'old' || field === 'new') return null; // Edge case
+                                                                if (vals && vals.old !== undefined && vals.new !== undefined) {
+                                                                    return (
+                                                                        <div key={field} className="flex items-center gap-3 text-sm bg-secondary/30 p-2 rounded-lg ml-2">
+                                                                            <span className="font-bold text-muted-foreground w-20 truncate" title={field}>{field}</span>
+                                                                            {formatChangeValue(vals.old)}
+                                                                            <ArrowRight size={14} className="text-muted-foreground mx-1 flex-shrink-0" />
+                                                                            {formatChangeValue(vals.new)}
+                                                                        </div>
+                                                                    );
+                                                                }
+                                                                return null;
+                                                            })}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <div className="space-y-2">
+                                                    {Object.entries(log.changes).map(([field, vals]) => (
+                                                        <div key={field} className="flex items-center gap-3 text-sm bg-secondary/30 p-2.5 rounded-lg">
+                                                            <span className="font-bold text-muted-foreground w-28 truncate" title={field}>{field}</span>
+                                                            <div className="flex-1 flex flex-wrap items-center gap-2">
+                                                                {formatChangeValue(vals.old)}
+                                                                <ArrowRight size={14} className="text-muted-foreground mx-2 flex-shrink-0" />
+                                                                <div className="bg-primary/5 px-2 py-0.5 rounded border border-primary/20">
+                                                                    {formatChangeValue(vals.new)}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                                 
                                 {/* Timestamp */}
-                                <div className="flex-shrink-0 flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-lg border border-border">
+                                <div className="flex-shrink-0 flex self-start md:self-auto items-center gap-1.5 text-xs font-medium text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-lg border border-border">
                                     <Clock size={12} />
                                     {formatDate(log.timestamp)}
                                 </div>
