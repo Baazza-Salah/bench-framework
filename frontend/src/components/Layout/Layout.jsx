@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Home, PlusCircle, BarChart2, Shield, Settings, Swords, BookOpen, Sun, Moon, Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Home, PlusCircle, BarChart2, Shield, Settings, Swords, BookOpen, Sun, Moon, Menu, X, Activity, LogOut } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Layout = ({ children }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { darkMode, setDarkMode } = useTheme();
+    const { user, logout } = useAuth();
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
 
     const NavItem = ({ to, icon: Icon, label, onClick }) => {
         const isActive = location.pathname === to;
@@ -60,6 +68,7 @@ const Layout = ({ children }) => {
                 <NavItem to="/criteria" icon={Settings} label="Manage Criteria" onClick={closeSidebar} />
                 <NavItem to="/compare" icon={BarChart2} label="Comparison" onClick={closeSidebar} />
                 <NavItem to="/battle" icon={Swords} label="Battle Mode" onClick={closeSidebar} />
+                <NavItem to="/logs" icon={Activity} label="System Logs" onClick={closeSidebar} />
 
                 <div className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 mt-6">Resources</div>
                 <NavItem to="/about" icon={BookOpen} label="Methodology" onClick={closeSidebar} />
@@ -67,11 +76,20 @@ const Layout = ({ children }) => {
 
             <div className="mt-auto pt-6 border-t border-border">
                 <div className="px-6 pb-6 md:px-8 md:pb-8">
-                    <div className="bg-secondary/50 rounded-2xl p-4 border border-border animate-scale-in stagger-8">
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">BS</div>
-                            <div className="text-xs font-bold text-foreground">Baazza Salah</div>
+                    <div className="bg-secondary/50 rounded-2xl p-4 border border-border animate-scale-in stagger-8 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs uppercase">
+                                {user?.username?.substring(0, 2) || 'US'}
+                            </div>
+                            <div className="text-xs font-bold text-foreground truncate max-w-[100px]">{user?.username || 'User'}</div>
                         </div>
+                        <button 
+                            onClick={handleLogout}
+                            className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+                            title="Logout"
+                        >
+                            <LogOut size={16} />
+                        </button>
                     </div>
                 </div>
             </div>

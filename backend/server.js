@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { v4: uuidv4 } = require('uuid');
 const { calculateScores, runComparison } = require('./utils/calculations');
 
@@ -16,6 +17,8 @@ const DATA_DIR = path.join(__dirname, 'data');
 const SOLUTIONS_FILE = path.join(DATA_DIR, 'solutions.json');
 const CRITERIA_FILE = path.join(DATA_DIR, 'criteria.json');
 const SCORES_FILE = path.join(DATA_DIR, 'scores.json');
+const USERS_FILE = path.join(DATA_DIR, 'users.json');
+const LOGS_FILE = path.join(DATA_DIR, 'logs.json');
 
 // Ensure data directory exists
 if (!fs.existsSync(DATA_DIR)) {
@@ -30,7 +33,7 @@ const readData = (filePath, defaultData = []) => {
   }
   try {
     const data = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(data);
+    return JSON.parse(data) || defaultData;
   } catch (err) {
     console.error(`Error reading ${filePath}:`, err);
     return defaultData;
@@ -48,12 +51,84 @@ const writeData = (filePath, data) => {
   }
 };
 
+const hashPassword = (password) => {
+  return crypto.createHash('sha256').update(password).digest('hex');
+};
+
+const getCurrentUser = (req) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return null;
+  const token = authHeader.replace('Bearer ', '');
+  const users = readData(USERS_FILE);
+  return users.find(u => u.token === token) || null;
+};
+
+const logAction = (username, action, target, details = "") => {
+  const logs = readData(LOGS_FILE);
+  logs.unshift({
+    id: uuidv4(),
+    timestamp: new Date().toISOString(),
+    username,
+    action,
+    target,
+    details
+  });
+  writeData(LOGS_FILE, logs.slice(0, 1000));
+};
+
 // --- DATA INITIALIZATION ---
 // Initialize criteria if empty
 const criteriaData = readData(CRITERIA_FILE);
 if (criteriaData.length === 0) {
   // const defaultCriteria = require('./data/criteria-seed.json'); 
 }
+
+// --- AUTH ENDPOINTS ---
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) return res.status(400).json({ error: 'Username and password required' });
+  
+  const users = readData(USERS_FILE);
+  const user = users.find(u => u.username === username);
+  
+  if (!user) return res.status(404).json({ error: 'User not found. Please register first.' });
+  
+  if (user.password_hash === hashPassword(password)) {
+    const newToken = uuidv4();
+    user.token = newToken;
+    writeData(USERS_FILE, users);
+    return res.json({ token: newToken, username });
+  } else {
+    return res.status(401).json({ error: 'Invalid password' });
+  }
+});
+
+app.post('/api/register', (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) return res.status(400).json({ error: 'Username and password required' });
+  
+  const users = readData(USERS_FILE);
+  if (users.find(u => u.username === username)) {
+    return res.status(409).json({ error: 'Username already exists' });
+  }
+  
+  const newToken = uuidv4();
+  const newUser = {
+    id: uuidv4(),
+    username,
+    password_hash: hashPassword(password),
+    token: newToken
+  };
+  users.push(newUser);
+  writeData(USERS_FILE, users);
+  return res.status(201).json({ token: newToken, username });
+});
+
+app.get('/api/logs', (req, res) => {
+  const user = getCurrentUser(req);
+  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+  res.json(readData(LOGS_FILE));
+});
 
 // --- API ENDPOINTS ---
 
@@ -66,6 +141,9 @@ app.get('/api/solutions', (req, res) => {
 // Add solution
 app.post('/api/solutions', (req, res) => {
   try {
+    const user = getCurrentUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+        
     const solutions = readData(SOLUTIONS_FILE);
     const newSolution = {
       id: uuidv4(),
@@ -74,6 +152,7 @@ app.post('/api/solutions', (req, res) => {
     };
     solutions.push(newSolution);
     if (writeData(SOLUTIONS_FILE, solutions)) {
+      logAction(user.username, 'CREATE', 'Solution', `Added solution ${newSolution.name || 'Unknown'}`);
       res.status(201).json(newSolution);
     } else {
       res.status(500).json({ error: 'Failed to save solution' });
@@ -87,6 +166,9 @@ app.post('/api/solutions', (req, res) => {
 // Update solution
 app.put('/api/solutions/:id', (req, res) => {
   try {
+    const user = getCurrentUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
     const solutions = readData(SOLUTIONS_FILE);
     const index = solutions.findIndex(s => s.id === req.params.id);
 
@@ -99,6 +181,7 @@ app.put('/api/solutions/:id', (req, res) => {
     solutions[index] = { ...solutions[index], ...updateData };
 
     if (writeData(SOLUTIONS_FILE, solutions)) {
+      logAction(user.username, 'UPDATE', 'Solution', `Updated solution ${solutions[index].name || req.params.id}`);
       res.json(solutions[index]);
     } else {
       res.status(500).json({ error: 'Failed to update solution' });
@@ -111,22 +194,35 @@ app.put('/api/solutions/:id', (req, res) => {
 
 // Delete solution
 app.delete('/api/solutions/:id', (req, res) => {
-  let solutions = readData(SOLUTIONS_FILE);
-  const initialLength = solutions.length;
-  solutions = solutions.filter(s => s.id !== req.params.id);
+  try {
+    const user = getCurrentUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
 
-  if (solutions.length === initialLength) {
-    return res.status(404).json({ error: 'Solution not found' });
+    let solutions = readData(SOLUTIONS_FILE);
+    const initialLength = solutions.length;
+    
+    let solName = req.params.id;
+    const existing = solutions.find(s => s.id === req.params.id);
+    if (existing && existing.name) solName = existing.name;
+    
+    solutions = solutions.filter(s => s.id !== req.params.id);
+
+    if (solutions.length === initialLength) {
+      return res.status(404).json({ error: 'Solution not found' });
+    }
+
+    writeData(SOLUTIONS_FILE, solutions);
+
+    // Also delete associated scores
+    let scores = readData(SCORES_FILE);
+    scores = scores.filter(s => s.solutionId !== req.params.id);
+    writeData(SCORES_FILE, scores);
+
+    logAction(user.username, 'DELETE', 'Solution', `Deleted solution ${solName}`);
+    res.json({ message: 'Solution deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  writeData(SOLUTIONS_FILE, solutions);
-
-  // Also delete associated scores
-  let scores = readData(SCORES_FILE);
-  scores = scores.filter(s => s.solutionId !== req.params.id);
-  writeData(SCORES_FILE, scores);
-
-  res.json({ message: 'Solution deleted successfully' });
 });
 
 // Get all criteria
@@ -138,6 +234,9 @@ app.get('/api/criteria', (req, res) => {
 // Add criterion
 app.post('/api/criteria', (req, res) => {
   try {
+    const user = getCurrentUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
     const criteria = readData(CRITERIA_FILE);
     const newCriterion = {
       id: uuidv4(),
@@ -145,6 +244,7 @@ app.post('/api/criteria', (req, res) => {
     };
     criteria.push(newCriterion);
     if (writeData(CRITERIA_FILE, criteria)) {
+      logAction(user.username, 'CREATE', 'Criterion', `Added criterion ${newCriterion.name || 'Unknown'}`);
       res.status(201).json(newCriterion);
     } else {
       res.status(500).json({ error: 'Failed to save criterion' });
@@ -158,6 +258,9 @@ app.post('/api/criteria', (req, res) => {
 // Update criterion
 app.put('/api/criteria/:id', (req, res) => {
   try {
+    const user = getCurrentUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
     const criteria = readData(CRITERIA_FILE);
     const index = criteria.findIndex(c => c.id === req.params.id);
 
@@ -169,6 +272,7 @@ app.put('/api/criteria/:id', (req, res) => {
     criteria[index] = { ...criteria[index], ...req.body, id: req.params.id };
 
     if (writeData(CRITERIA_FILE, criteria)) {
+      logAction(user.username, 'UPDATE', 'Criterion', `Updated criterion ${criteria[index].name || req.params.id}`);
       res.json(criteria[index]);
     } else {
       res.status(500).json({ error: 'Failed to update criterion' });
@@ -182,8 +286,16 @@ app.put('/api/criteria/:id', (req, res) => {
 // Delete criterion
 app.delete('/api/criteria/:id', (req, res) => {
   try {
+    const user = getCurrentUser(req);
+    if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
     let criteria = readData(CRITERIA_FILE);
     const initialLength = criteria.length;
+    
+    let critName = req.params.id;
+    const existing = criteria.find(c => c.id === req.params.id);
+    if(existing && existing.name) critName = existing.name;
+
     criteria = criteria.filter(c => c.id !== req.params.id);
 
     if (criteria.length === initialLength) {
@@ -191,6 +303,7 @@ app.delete('/api/criteria/:id', (req, res) => {
     }
 
     if (writeData(CRITERIA_FILE, criteria)) {
+      logAction(user.username, 'DELETE', 'Criterion', `Deleted criterion ${critName}`);
       res.json({ message: 'Criterion deleted successfully' });
     } else {
       res.status(500).json({ error: 'Failed to delete criterion' });
@@ -204,14 +317,16 @@ app.delete('/api/criteria/:id', (req, res) => {
 // Get scores for a solution
 app.get('/api/scores/:solutionId', (req, res) => {
   const scores = readData(SCORES_FILE);
-  // scores.json is hierarchical: [ { solutionId, items: [...] } ]
   const solutionEntry = scores.find(s => s.solutionId === req.params.solutionId);
   res.json(solutionEntry ? solutionEntry.items : []);
 });
 
 // Subscribe/Update scores (Batch update supported)
 app.post('/api/scores', (req, res) => {
-  const { solutionId, items } = req.body; // items: array of { criterionId, score, mode, evidence, notes }
+  const user = getCurrentUser(req);
+  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
+  const { solutionId, items } = req.body;
 
   if (!solutionId || !Array.isArray(items)) {
     return res.status(400).json({ error: 'Invalid payload' });
@@ -236,6 +351,7 @@ app.post('/api/scores', (req, res) => {
   });
 
   writeData(SCORES_FILE, allScores);
+  logAction(user.username, 'UPDATE', 'Scores', `Updated ${items.length} scores for solution ${solutionId}`);
   res.json({ message: 'Scores updated', count: items.length });
 });
 
@@ -248,11 +364,9 @@ app.get('/api/report/:id', (req, res) => {
   const allScores = readData(SCORES_FILE);
   const criteria = readData(CRITERIA_FILE);
 
-  // Get items for this solution
   const solutionEntry = allScores.find(s => s.solutionId === solution.id);
   const scores = solutionEntry ? solutionEntry.items : [];
 
-  // Run calculation logic
   const results = calculateScores(solution, scores, criteria);
 
   res.json(results);
@@ -268,26 +382,13 @@ app.get('/api/compare', (req, res) => {
   res.json(comparisonResults);
 });
 
-// Initialize Demo Data route (optional, for setup)
+// Initialize Demo Data route
 app.post('/api/init-demo', (req, res) => {
   try {
     const demoData = require('./data/demo-data.json');
-
-    // Write Solutions
-    if (demoData.solutions) {
-      writeData(SOLUTIONS_FILE, demoData.solutions);
-    }
-
-    // Write Scores
-    if (demoData.scores) {
-      writeData(SCORES_FILE, demoData.scores);
-    }
-
-    // Write Criteria if provided
-    if (demoData.criteria) {
-      writeData(CRITERIA_FILE, demoData.criteria);
-    }
-
+    if (demoData.solutions) writeData(SOLUTIONS_FILE, demoData.solutions);
+    if (demoData.scores) writeData(SCORES_FILE, demoData.scores);
+    if (demoData.criteria) writeData(CRITERIA_FILE, demoData.criteria);
     res.json({ message: 'Demo data initialized successfully' });
   } catch (e) {
     res.status(500).json({ error: e.message });
